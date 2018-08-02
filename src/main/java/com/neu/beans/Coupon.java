@@ -10,7 +10,7 @@ public class Coupon {
     private int total;//coupon total
     private int get;//coupon get money
     private Date deadline;//coupon expired time
-    private int integration;//integration per coupon
+    private int score;//integration per coupon
 
     public int getCid() {
         return cid;
@@ -47,13 +47,7 @@ public class Coupon {
 		this.money = money;
 	}
 
-	public int getIntegration() {
-		return integration;
-	}
-
-	public void setIntegration(int integration) {
-		this.integration = integration;
-	}
+	
 
 	public int getTotal() {
         return total;
@@ -78,4 +72,12 @@ public class Coupon {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 }

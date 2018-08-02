@@ -6,10 +6,11 @@ public class Coupon {
     private int cid;//coupon id
     private int qid;//company id
     private String category;//coupon category
-    private int money;//coupon price
+    private double money;//coupon price
     private int total;//coupon total
     private int get;//coupon get money
     private Date deadline;//coupon expired time
+    private int score;//integration per coupon
 
     public int getCid() {
         return cid;
@@ -35,15 +36,20 @@ public class Coupon {
         this.category = category;
     }
 
-    public int getMoney() {
-        return money;
-    }
+    
+    
 
-    public void setMoney(int money) {
-        this.money = money;
-    }
+    public double getMoney() {
+		return money;
+	}
 
-    public int getTotal() {
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	
+
+	public int getTotal() {
         return total;
     }
 
@@ -66,4 +72,12 @@ public class Coupon {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 }

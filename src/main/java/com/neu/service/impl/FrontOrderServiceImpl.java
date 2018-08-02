@@ -20,12 +20,12 @@ public class FrontOrderServiceImpl implements FrontOrderService {
     FrontOrderMapper mapper;
 	
 	@Override
-	public List<OrderVO> findAllorder() {
+	public List<OrderVO> findAllorder(String userid) {
 		System.out.println("...Service...findAllorder().....");
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		List<SOrder> orderList = null;			
 		try {
-			orderList=mapper.getOrderByOpenid("oC9yV5KjYiv_zu6qJ0pm_WlN4LEk");//???? ???? ?? openid  ???? ?????????
+			orderList=mapper.getOrderByPhone(userid);
 			
 			for (SOrder sOrder : orderList) {
 				OrderVO ordervo = new OrderVO();
@@ -44,16 +44,16 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
-	public List<OrderVO> findorderpaying() {
+	public List<OrderVO> findorderpaying(String userid) {
 		System.out.println("...Service...findorderpaying().....");
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		List<SOrder> orderList = null;			
 		try {
-			orderList=mapper.getOrderByOpenid("oC9yV5KjYiv_zu6qJ0pm_WlN4LEk");//???? ???? ?? openid  ???? ?????????
+			orderList=mapper.getOrderByPhone(userid);
 			
 			for (SOrder Sorder : orderList) {
 				OrderVO ordervo = new OrderVO();
-				if(Sorder.getStatus().equals("???"))
+				if(Sorder.getStatus().equals("待付款"))
 				{
 					Lesson lesson = mapper.getLesssonById(Sorder.getLid());
 					Address address = mapper.getLessonAdderss(Sorder.getBranchid());
@@ -71,16 +71,16 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
-	public List<OrderVO> findorderpaied() {
+	public List<OrderVO> findorderpaied(String userid) {
 		System.out.println("...Service...findorderpaied().....");
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		List<SOrder> orderList = null;			
 		try {
-			orderList=mapper.getOrderByOpenid("oC9yV5KjYiv_zu6qJ0pm_WlN4LEk");//???? ???? ?? openid  ???? ?????????
+			orderList=mapper.getOrderByPhone(userid);//???? ???? ?? openid  ???? ?????????
 			
 			for (SOrder Sorder : orderList) {
 				OrderVO ordervo = new OrderVO();
-				if(Sorder.getStatus().equals("???"))
+				if(Sorder.getStatus().equals("已付款"))
 				{
 					Lesson lesson = mapper.getLesssonById(Sorder.getLid());
 					Address address = mapper.getLessonAdderss(Sorder.getBranchid());
@@ -98,16 +98,16 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
-	public List<OrderVO> findorderused() {
+	public List<OrderVO> findorderused(String userid) {
 		System.out.println("...Service...findorderused().....");
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		List<SOrder> orderList = null;			
 		try {
-			orderList=mapper.getOrderByOpenid("oC9yV5KjYiv_zu6qJ0pm_WlN4LEk");//???? ???? ?? openid  ???? ?????????
+			orderList=mapper.getOrderByPhone(userid);//???? ???? ?? openid  ???? ?????????
 			
 			for (SOrder Sorder : orderList) {
 				OrderVO ordervo = new OrderVO();
-				if(Sorder.getStatus().equals("???"))
+				if(Sorder.getStatus().equals("已使用"))
 				{
 					Lesson lesson = mapper.getLesssonById(Sorder.getLid());
 					Address address = mapper.getLessonAdderss(Sorder.getBranchid());
@@ -125,16 +125,16 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
-	public List<OrderVO> findordercancel() {
+	public List<OrderVO> findordercancel(String userid) {
 		System.out.println("...Service...findordercalcel().....");
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		List<SOrder> orderList = null;			
 		try {
-			orderList=mapper.getOrderByOpenid("oC9yV5KjYiv_zu6qJ0pm_WlN4LEk");//???? ???? ?? openid  ???? ?????????
+			orderList=mapper.getOrderByPhone(userid);
 			
 			for (SOrder Sorder : orderList) {
 				OrderVO ordervo = new OrderVO();
-				if((Sorder.getStatus().equals("???"))||(Sorder.getStatus().equals("???")))
+				if((Sorder.getStatus().equals("退款中"))||(Sorder.getStatus().equals("已退款")))
 				{
 					Lesson lesson = mapper.getLesssonById(Sorder.getLid());
 					Address address = mapper.getLessonAdderss(Sorder.getBranchid());

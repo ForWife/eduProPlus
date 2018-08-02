@@ -21,42 +21,42 @@ public class FrontOrderHandler
 	  
 	  @RequestMapping(value = "/front/ajaxallorder")
 	  @ResponseBody
-	  public List<OrderVO> findAllorder()
+	  public List<OrderVO> findAllorder(String userid)
 	  {
 		  System.out.println("....servlet....findAllorder()......");
-		  return frontorderService.findAllorder();
+		  return frontorderService.findAllorder(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxorderpaying")
 	  @ResponseBody
-	  public List<OrderVO> findorderpaying()
+	  public List<OrderVO> findorderpaying(String userid)
 	  {
 		  System.out.println("....servlet....findorderpaying()......");
-		  return frontorderService.findorderpaying();
+		  return frontorderService.findorderpaying(userid);
       }
 
 	  @RequestMapping(value = "/front/ajaxorderpaied")
 	  @ResponseBody
-	  public List<OrderVO> findorderpaied()
+	  public List<OrderVO> findorderpaied(String userid)
 	  {
 		  System.out.println("....servlet....findorderpaied()......");
-		  return frontorderService.findorderpaied();
+		  return frontorderService.findorderpaied(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxorderused")
 	  @ResponseBody
-	  public List<OrderVO> findorderused()
+	  public List<OrderVO> findorderused(String userid)
 	  {
 		  System.out.println("....servlet....findorderused()......");
-		  return frontorderService.findorderused();
+		  return frontorderService.findorderused(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxordercancel")
 	  @ResponseBody
-	  public List<OrderVO> findordercancel()
+	  public List<OrderVO> findordercancel(String userid)
 	  {
 		  System.out.println("....servlet....findordercancel()......");
-		  return frontorderService.findordercancel();
+		  return frontorderService.findordercancel(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxdeleteorder")

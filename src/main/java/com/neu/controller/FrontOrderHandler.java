@@ -88,8 +88,7 @@ public class FrontOrderHandler
 //	  add Order
 	  @RequestMapping(value="/front/addUser")
 	  @ResponseBody
-	  public String addOrder(){
-		  
+	  public String addOrder(int lid,int branchid,String nickname,String tel){
 		  
 		  return "";
 		  

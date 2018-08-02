@@ -20,7 +20,7 @@
 	</head>
 
 	<body>
-		<h5>预约课程</h5>
+		<h5>免费课程预约</h5>
 		<form class="mui-card" style="border-radius: 10px;" action='#' method="post" name="Form">
 			<div class="mui-input-row" style="margin:2px 2px;border: 1px solid #C0C0C0;border-radius:10px">
 				<label style="width: 120px;">姓名：</label>
@@ -31,28 +31,20 @@
 				<input id="tel" style="float:left" type="text" placeholder="请输入真实电话">
 			</div>
 			<div class="mui-input-row">
-				<label>优惠劵</label>
+				<label>备注：</label>
 			</div>
-			
-			<select class="mui-btn mui-btn-block">
-					<option value="item-1">item-1</option>
-					<option value="item-2">item-2</option>
-					<option value="item-3">item-3</option>
-					<option value="item-4">item-4</option>
-					<option value="item-5">item-5</option>
-			</select>
 
-			
-			
+			<div class="mui-input-row" style="margin: 5px 2px;">
+				<textarea id="textarea" style="margin-bottom: 0px;" rows="5" placeholder="输入必要备注"></textarea>
+			</div>
 			<div class="mui-button-row">
-				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >加入订单</button>
+				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >预约</button>
 			</div>
 		</form>
 
 	</body>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
-		var session;
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -71,17 +63,6 @@
 		var branchid = request["branchid"];
 
 		$(function() {
-			$.ajax({
-				type:"get",
-				url:"/front/getsession",
-				async:true,,
-				dataType:"json",
-				success:function(data){
-					session = data;
-					console.log(session)
-				}
-			});
-			
 			$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();

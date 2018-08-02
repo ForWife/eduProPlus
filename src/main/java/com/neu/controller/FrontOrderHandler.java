@@ -85,4 +85,13 @@ public class FrontOrderHandler
 		  System.out.println("....servlet....cancel()......");
 		  return frontorderService.cancel(oid);
       }
+//	  add Order
+	  @RequestMapping(value="/front/addUser")
+	  @ResponseBody
+	  public String addOrder(){
+		  
+		  
+		  return "";
+		  
+	  }
 }

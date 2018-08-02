@@ -24,14 +24,14 @@ public class FrontLessonHandler {
 	@Autowired
 	FrontLessonService lessonService;
 	
-//	通过课程类型来显示
+
 	@RequestMapping(value="/front/findLessons")
 	@ResponseBody
 	public Map<String, List<Lesson>> findLessons() throws Exception{
 		return lessonService.findLessonListByCategory();
 	}
 	
-//	查找某个课程详情
+
 	@RequestMapping(value = "/front/findLessonById")
 	@ResponseBody
 	public LessonAndAddress findLessonById(Integer lid, Integer branchid) throws Exception{
@@ -43,20 +43,20 @@ public class FrontLessonHandler {
 //			map.put("branchid", branchid);
 			lessonAndAddress = lessonService.findLessonAndAddressById( lid, branchid);
 		}else{
-			System.out.println("...................没有传入数据");
+			
 			lessonAndAddress = null;
 		}
 		return lessonAndAddress;
 	}
 	
-//	通过地址来显示课程
+
 	@RequestMapping(value="/front/findLessonsByAddress")
 	@ResponseBody
 	public List<AddressandLesson> findLessonsByAddress(int qid) throws Exception{
 		return lessonService.findLessonsByAddress(qid);
 	}
 	
-//	通过地址显示试听课
+
 	@RequestMapping(value="/front/findFreelisten")
 	@ResponseBody
 	public List<FreeListenByAddress> findFreelisten(int qid) throws Exception{

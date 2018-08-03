@@ -31,20 +31,28 @@
 				<input id="tel" style="float:left" type="text" placeholder="请输入真实电话">
 			</div>
 			<div class="mui-input-row">
-				<label>备注：</label>
+				<label>优惠劵</label>
 			</div>
+			
+			<select class="mui-btn mui-btn-block">
+					<option value="item-1">item-1</option>
+					<option value="item-2">item-2</option>
+					<option value="item-3">item-3</option>
+					<option value="item-4">item-4</option>
+					<option value="item-5">item-5</option>
+			</select>
 
-			<div class="mui-input-row" style="margin: 5px 2px;">
-				<textarea id="textarea" style="margin-bottom: 0px;" rows="5" placeholder="输入必要备注"></textarea>
-			</div>
+			
+			
 			<div class="mui-button-row">
-				<button type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >预约</button>
+				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >加入订单</button>
 			</div>
 		</form>
 
 	</body>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
+		var session;
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -63,19 +71,31 @@
 		var branchid = request["branchid"];
 
 		$(function() {
-			$("#btn").click(function(){
+			$.ajax({
+				type:"get",
+				url:"/front/getsession",
+				async:true,,
+				dataType:"json",
+				success:function(data){
+					session = data;
+					console.log(session)
+				}
+			});
+			
+			$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();
-				
+				console.log(tel)
+				console.log(nickname)
 				$.ajax({
 					type: "get",
 					url: "/front/addOrder",
 					async: false,
 					data: {
-						lid: lid,
-						branchid: branchid,
-						nickname: nickname,
-						tel: tel
+						"lid": lid,
+						"branchid": branchid,
+						"nickname": nickname,
+						"tel": tel
 					},
 					dataType:"json",
 					success:function(data){

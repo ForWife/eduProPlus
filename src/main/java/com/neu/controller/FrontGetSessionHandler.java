@@ -1,7 +1,4 @@
 package com.neu.controller;
-
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,9 +19,9 @@ public class FrontGetSessionHandler {
 		  System.out.println("....servlet....getsession()......");
 		  HttpSession session= request.getSession();
 		  Userlist user= (Userlist)session.getAttribute("user");
-		  System.out.println(user.getTel());
-		  System.out.println(user.getUname());
-		  System.out.println(user.getUserimg());
+//		  System.out.println(user.getTel());
+//		  System.out.println(user.getUname());
+//		  System.out.println(user.getUserimg());
 		  return user;
       }
 	  

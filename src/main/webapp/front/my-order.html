@@ -118,8 +118,20 @@
     	};
     $(function(){
 	   	 	  
+    	var phone="";
+        $.ajax({
+ 		   url:"/front/getsession",
+ 		   async:false,
+ 		   success:function(data)
+ 		   {
+ 			  phone=data.tel;
+ 		   }	
+ 	   })
+    	
+    	
 	   $.ajax({
 		   url:"ajaxallorder",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -178,6 +190,7 @@
 	   })
 	   	  $.ajax({
 		   url:"ajaxorderpaying",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -194,7 +207,7 @@
 				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
 				   card+='<div class="ordercard_down">';			  
 				   card+=" <div class='orderbutton'><button type='button' onclick='deleteorder("+data[i].sorder.oid+")'>取消</button></div><div class='orderbuttonpay'><button type='button' onclick='pay("+cardobject+")'>付款</button></div>"; 
-				   card+='</div>';
+				   card+='</div>';                        
 			       $("#orderback2").append(card);				   
 			   }
 
@@ -203,6 +216,7 @@
 	   
 	      $.ajax({
 		   url:"ajaxorderpaied",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -228,6 +242,7 @@
 	   
 	   $.ajax({
 		   url:"ajaxorderused",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -251,6 +266,7 @@
 	   })
 	    $.ajax({
 		   url:"ajaxordercancel",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -387,46 +403,18 @@ Date.prototype.Format = function (fmt) { //author:czy
 			
 		</div>
 		<script src="js/mui.min.js"></script>
-		<script>
-			mui.init({
-				swipeBack: false
-			});
-			(function($) {
-				$('.mui-scroll-wrapper').scroll({
-					indicators: true //是否显示滚动条
-				});
-				var html2 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
-				var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-				var item2 = document.getElementById('item2mobile');
-				var item3 = document.getElementById('item3mobile');
-				document.getElementById('slider').addEventListener('slide', function(e) {
-					if (e.detail.slideNumber === 1) {
-						if (item2.querySelector('.mui-loading')) {
-							setTimeout(function() {
-								item2.querySelector('.mui-scroll').innerHTML = html2;
-							}, 500);
-						}
-					} else if (e.detail.slideNumber === 2) {
-						if (item3.querySelector('.mui-loading')) {
-							setTimeout(function() {
-								item3.querySelector('.mui-scroll').innerHTML = html3;
-							}, 500);
-						}
-					}
-				});
-				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-				$('.mui-input-group').on('change', 'input', function() {
-					if (this.checked) {
-						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-						//force repaint
-						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-					}
-				});
-			})(mui);
-		</script>
+
 
 	</body>
 
 </html>
+
+
+
+
+
+
+
+
 
 

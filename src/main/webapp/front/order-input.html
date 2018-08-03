@@ -82,8 +82,6 @@
 					console.log(session)
 				}
 			});
-			
-			
 		});
 		$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
@@ -94,7 +92,7 @@
 				$.ajax({
 					type: "get",
 					url: "/front/addOrder",
-					async: true,
+					async: false,
 					data: {
 						"lid": lid,
 						"branchid": branchid,
@@ -105,10 +103,9 @@
 					dataType:"json",
 					success:function(data){
 						console.log(data); 
-						mui.openWindow({
-							url: "my-order.html"
-					});
-					console.log("out？？？？")					}
+						mui.openWindow("my-order.html")
+//						mui.openWindow("my-order.html");
+					}
 				});
 				
 			});

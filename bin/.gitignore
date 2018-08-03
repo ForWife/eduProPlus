@@ -2,7 +2,11 @@
 /out/
 /.idea/
 /.settings/
-pom.xml
 !.gitignore
 eduPro.iml
 /.classpath
+/.DS_Store
+/.gitignore
+/.project
+/pom.xml
+/src/

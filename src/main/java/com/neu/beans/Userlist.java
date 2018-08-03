@@ -7,6 +7,8 @@ public class Userlist {
 	private String tel;
 	private String openid;
 	private String userimg;
+	private int score;
+	
 	public int getUid() {
 		return uid;
 	}
@@ -36,6 +38,12 @@ public class Userlist {
 	}
 	public void setUserimg(String userimg) {
 		this.userimg = userimg;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 }
 

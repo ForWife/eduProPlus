@@ -214,6 +214,7 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 			int j = random.nextInt(10);
 			transationid += j;
 		}
+		
 		System.out.println(transationid);
 		sorder.setTransactionid(transationid);
 		

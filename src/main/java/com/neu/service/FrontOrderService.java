@@ -7,15 +7,15 @@ import com.neu.po.OrderVO;
 
 public interface FrontOrderService {
 
-	public List<OrderVO> findAllorder();
+	public List<OrderVO> findAllorder(String userid);
 
-	public List<OrderVO> findorderpaying();
+	public List<OrderVO> findorderpaying(String userid);
 
-	public List<OrderVO> findorderpaied();
+	public List<OrderVO> findorderpaied(String userid);
 
-	public List<OrderVO> findorderused();
+	public List<OrderVO> findorderused(String userid);
 
-	public List<OrderVO> findordercancel();
+	public List<OrderVO> findordercancel(String userid);
 
 	public int deleteorder(int oid);
 

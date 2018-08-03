@@ -17,11 +17,11 @@ public class FrontReserveServiceImpl implements FrontReserveService {
 	FrontReserveMapper mapper;
 	
 	@Override
-	public List<FreeListenVO> findAllReserve() {
+	public List<FreeListenVO> findAllReserve(String userid) {
 		System.out.println("...Service...findAllreserve().....");
 		List<FreeListenVO> list=null;
 		try {
-			list=mapper.findAllreserve();
+			list=mapper.findAllreserve(userid);
 		} catch (Exception e) {
 			list=null;
 			e.printStackTrace();
@@ -30,11 +30,11 @@ public class FrontReserveServiceImpl implements FrontReserveService {
 	    }
 
 	@Override
-	public List<FreeListenVO> findReserved() {
+	public List<FreeListenVO> findReserved(String userid) {
 		System.out.println("...Service...findreserved().....");
 		List<FreeListenVO> list=null;
 		try {
-			list=mapper.findreserved();
+			list=mapper.findreserved(userid);
 		} catch (Exception e) {
 			list=null;
 			e.printStackTrace();
@@ -43,11 +43,11 @@ public class FrontReserveServiceImpl implements FrontReserveService {
 	}
 
 	@Override
-	public List<FreeListenVO> findReserveing() {
+	public List<FreeListenVO> findReserveing(String userid) {
 		System.out.println("...Service...findreserveing().....");
 		List<FreeListenVO> list=null;
 		try {
-			list=mapper.findreserveing();
+			list=mapper.findreserveing(userid);
 		} catch (Exception e) {
 			list=null;
 			e.printStackTrace();

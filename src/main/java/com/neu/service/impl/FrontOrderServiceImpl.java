@@ -1,7 +1,9 @@
 package com.neu.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.neu.beans.Address;
 import com.neu.beans.Lesson;
 import com.neu.beans.SOrder;
+import com.neu.mapper.FrontLessonMapper;
 import com.neu.mapper.FrontOrderMapper;
 import com.neu.po.OrderVO;
 import com.neu.service.FrontOrderService;
@@ -18,6 +21,9 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 
 	@Autowired
     FrontOrderMapper mapper;
+	
+	@Autowired
+	FrontLessonMapper lessonMapper;
 	
 	@Override
 	public List<OrderVO> findAllorder(String userid) {
@@ -191,6 +197,30 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 			e.printStackTrace();
 		}
 		return a;
+	}
+
+	@Override
+	public int addOrder(SOrder sorder) throws Exception {
+		//get transationid
+		String transationid = "" ;
+		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		System.out.println(sfdate);
+		transationid += sfdate;
+		//and three random
+		Random random = new Random();
+		for (int i = 0; i < 3; ++i) {
+			int j = random.nextInt(10);
+			transationid += j;
+		}
+		System.out.println(transationid);
+		sorder.setTransactionid(transationid);
+		
+		Lesson lesson = mapper.getLesssonById(sorder.getLid());
+		sorder.setTotal(lesson.getLprice());
+		
+		
+		
+		return 0;
 	}
 	
 

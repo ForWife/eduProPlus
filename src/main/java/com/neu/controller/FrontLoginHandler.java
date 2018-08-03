@@ -33,10 +33,13 @@ public class FrontLoginHandler {
 //			response.setHeader("Cache-Control", "no-cache");
 //			response.setHeader("Pragme", "no-cache");
  		  System.out.println("....servlet....frontlogin()......");
- 		 System.out.println("....servlet....frontlogin()......");
- 		System.out.println("....servlet....frontlogin()......");
- 		System.out.println("....servlet....frontlogin()......");
- 		System.out.println("....servlet....frontlogin()......");
+
+
+ 		 //请求和响应的信息都不应该被存储在对方的磁盘系统中； 
+		   response.addHeader( "Cache-Control", "no-store");
+		   //于客户机的每次请求，代理服务器必须想服务器验证缓存是否过时；
+		   response.addHeader( "Cache-Control", "must-revalidate");
+
  		 //从数据库查找是否存在这样一个手机号的用户
  		  //如果存在那么就取出来 返回
  		  //如果不存在那么就 写入一个

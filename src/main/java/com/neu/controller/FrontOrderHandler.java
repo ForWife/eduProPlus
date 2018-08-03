@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neu.beans.SOrder;
 import com.neu.po.OrderVO;
 import com.neu.service.FrontOrderService;
 
@@ -85,5 +86,21 @@ public class FrontOrderHandler
 		  System.out.println("....servlet....cancel()......");
 		  return frontorderService.cancel(oid);
       }
+	  
+	  @RequestMapping(value="/front/addOrder")
+	  @ResponseBody
+	  public String addOrder(int lid,int branchid, String nickname, String tel, String openid){
+		  System.out.println("FrontOrderHandler.addOrder()");
+		  SOrder sorder = new SOrder();
+		  sorder.setLid(lid);
+		  sorder.setBranchid(branchid);
+		  sorder.setNickname(nickname);
+		  sorder.setTel(tel);
+		  sorder.setOpenid(openid);
+		  
+		  
+		  
+		  return "{\"result\":\"success\"}";
+	  }
 
 }

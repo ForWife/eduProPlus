@@ -17,4 +17,6 @@ public interface FrontOrderMapper {
 	public int deleteorderbyoid(int oid);
 	public int paybyoid(int oid);
 	public int cancelbyoid(int oid);
+	
+	public int addOrder(SOrder sorder) throws Exception;
 }

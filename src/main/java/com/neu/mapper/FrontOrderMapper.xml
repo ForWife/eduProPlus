@@ -28,4 +28,6 @@
       update sorder set status='退款中' where oid=#{oid}
 </update>
 
+<update id="addOrder" parameterType="com.nue.beans.SOrder" ></update>
+
 </mapper>

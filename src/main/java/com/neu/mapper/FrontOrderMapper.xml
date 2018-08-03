@@ -28,6 +28,8 @@
       update sorder set status='退款中' where oid=#{oid}
 </update>
 
-<update id="addOrder" parameterType="com.nue.beans.SOrder" ></update>
-
+<insert id="addOrder" parameterType="com.neu.beans.SOrder">
+	INSERT INTO sorder(lid,openid,total,cid,actual,status,ordertime,qid,transactionid,nickname,tel,branchid) 
+VALUES(#{lid},#{openid},#{total},#{cid},#{actual},"待付款",NOW(),1,#{transactionid},#{nickname},#{tel},#{branchid})
+</insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.neu.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -201,24 +202,29 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 
 	@Override
 	public int addOrder(SOrder sorder) throws Exception {
+		System.out.println("FrontOrderServiceImpl.addOrder()");
+		
 		//get transationid
 		String transationid = "" ;
+//		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		System.out.println(sfdate);
-		transationid += sfdate;
+		 
+		transationid = sfdate.format(new Date());
 		//and three random
 		Random random = new Random();
 		for (int i = 0; i < 3; ++i) {
 			int j = random.nextInt(10);
 			transationid += j;
 		}
+		System.out.println("...................");
 		System.out.println(transationid);
 		sorder.setTransactionid(transationid);
 		
 		Lesson lesson = mapper.getLesssonById(sorder.getLid());
 		sorder.setTotal(lesson.getLprice());
 		
-		
+		mapper.addOrder(sorder);
 		
 		return 0;
 	}

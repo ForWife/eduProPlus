@@ -86,24 +86,25 @@
 		$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();
-				console.log(tel)
-				console.log(nickname)
+				console.log(tel);
+				console.log(nickname);
+				
 				$.ajax({
 					type: "get",
 					url: "/front/addOrder",
-					async: true,
+					async: false,
 					data: {
 						"lid": lid,
 						"branchid": branchid,
 						"nickname": nickname,
-						"tel": tel
+						"tel": tel,
+						"openid":session.openid
 					},
 					dataType:"json",
 					success:function(data){
-						console.log("成功"); 
-						mui.openWindow({
-							url: "my-order.html"
-					});
+						console.log(data); 
+						mui.openWindow("my-order.html")
+//						mui.openWindow("my-order.html");
 					}
 				});
 				

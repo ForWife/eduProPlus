@@ -19,26 +19,26 @@ public class FrontReserveHandler
 	  
 	  @RequestMapping(value = "/front/ajaxallreserve")
 	  @ResponseBody
-	  public List<FreeListenVO> findAllreserve()
+	  public List<FreeListenVO> findAllreserve(String userid)
 	  {
 		  System.out.println("....servlet....findAllreserve()......");
-		  return frontreserverService.findAllReserve();
+		  return frontreserverService.findAllReserve(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxreserved")
 	  @ResponseBody
-	  public List<FreeListenVO> findreserved()
+	  public List<FreeListenVO> findreserved(String userid)
 	  {
 		  System.out.println("....servlet....findreserved()......");
-		  return frontreserverService.findReserved();
+		  return frontreserverService.findReserved(userid);
       }
 	  
 	  @RequestMapping(value = "/front/ajaxreserveing")
 	  @ResponseBody
-	  public List<FreeListenVO> findreserveing()
+	  public List<FreeListenVO> findreserveing(String userid)
 	  {
 		  System.out.println("....servlet....findreserveing()......");
-		  return frontreserverService.findReserveing();
+		  return frontreserverService.findReserveing(userid);
       }
 	  
 }

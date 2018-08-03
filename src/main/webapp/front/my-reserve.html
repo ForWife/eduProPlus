@@ -14,9 +14,19 @@
         <script>
         	
     $(function(){
-	   	 	   	 	
+    	var phone="";
+        $.ajax({
+ 		   url:"/front/getsession",
+ 		   async:false,
+ 		   success:function(data)
+ 		   {
+ 			  phone=data.tel;
+ 		   }	
+ 	   })
+ 	   
 	   $.ajax({
 		   url:"ajaxallreserve",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -45,6 +55,7 @@
 	   
 	    $.ajax({
 		   url:"ajaxreserved",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)
@@ -67,6 +78,7 @@
 	   
 	    $.ajax({
 		   url:"ajaxreserveing",
+		   data:{"userid":phone},
 		   success:function(data)
 		   {
 			   for(var i=0; i<data.length;i++)

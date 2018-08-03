@@ -9,7 +9,7 @@
 	</select>
 	
     <insert id="adduser"  parameterType="String">
-    	insert into userlist (uname,tel,openid,userimg) values (#{phone},#{phone},#{phone},'default.img')
+    	insert into userlist (uname,tel,openid,userimg,score) values (#{phone},#{phone},#{phone},'default.jpg',0)
     </insert>
 	
 </mapper>

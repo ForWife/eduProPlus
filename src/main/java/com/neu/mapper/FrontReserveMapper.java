@@ -8,11 +8,11 @@ import com.neu.po.FreeListenVO;
 public interface FrontReserveMapper 
 {
 
-	public List<FreeListenVO> findAllreserve() throws Exception;
+	public List<FreeListenVO> findAllreserve(String userid) throws Exception;
 
-	public List<FreeListenVO> findreserved() throws Exception;
+	public List<FreeListenVO> findreserved(String userid) throws Exception;
 
-	public List<FreeListenVO> findreserveing()throws Exception;
+	public List<FreeListenVO> findreserveing(String userid)throws Exception;
 		
 }
 

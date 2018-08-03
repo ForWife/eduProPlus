@@ -45,11 +45,12 @@
 			
 			
 			<div class="mui-button-row">
-				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >加入订单</button>
+				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " >加入订单</button>
 			</div>
 		</form>
 
 	</body>
+	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
 		var session;
@@ -74,15 +75,15 @@
 			$.ajax({
 				type:"get",
 				url:"/front/getsession",
-				async:true,,
+				async:true,
 				dataType:"json",
 				success:function(data){
 					session = data;
 					console.log(session)
 				}
 			});
-			
-			$("#submit-order").click(function(){
+		});
+		$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();
 				console.log(tel)
@@ -90,7 +91,7 @@
 				$.ajax({
 					type: "get",
 					url: "/front/addOrder",
-					async: false,
+					async: true,
 					data: {
 						"lid": lid,
 						"branchid": branchid,
@@ -99,7 +100,7 @@
 					},
 					dataType:"json",
 					success:function(data){
-						/* console.log("成功"); */
+						console.log("成功"); 
 						mui.openWindow({
 							url: "my-order.html"
 					});
@@ -107,8 +108,6 @@
 				});
 				
 			});
-		});
-		
 		
 		function successfun(data){
 			alert(data);

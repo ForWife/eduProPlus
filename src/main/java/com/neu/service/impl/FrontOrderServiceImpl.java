@@ -201,6 +201,8 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 
 	@Override
 	public int addOrder(SOrder sorder) throws Exception {
+		System.out.println("FrontOrderServiceImpl.addOrder()");
+		
 		//get transationid
 		String transationid = "" ;
 		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
@@ -218,7 +220,7 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 		Lesson lesson = mapper.getLesssonById(sorder.getLid());
 		sorder.setTotal(lesson.getLprice());
 		
-		
+		mapper.addOrder(sorder);
 		
 		return 0;
 	}

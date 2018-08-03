@@ -89,7 +89,7 @@ public class FrontOrderHandler
 	  
 	  @RequestMapping(value="/front/addOrder")
 	  @ResponseBody
-	  public String addOrder(int lid,int branchid, String nickname, String tel, String openid){
+	  public String addOrder(int lid,int branchid, String nickname, String tel, String openid) throws Exception{
 		  System.out.println("FrontOrderHandler.addOrder()");
 		  SOrder sorder = new SOrder();
 		  sorder.setLid(lid);
@@ -98,7 +98,7 @@ public class FrontOrderHandler
 		  sorder.setTel(tel);
 		  sorder.setOpenid(openid);
 		  
-		  
+		  int isok = frontorderService.addOrder(sorder);
 		  
 		  return "{\"result\":\"success\"}";
 	  }

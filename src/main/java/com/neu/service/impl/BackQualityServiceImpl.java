@@ -96,7 +96,7 @@ public class BackQualityServiceImpl implements BackQualityService {
             return null;
         }
     }
-
+    @Transactional
     @Override
     public int addQuality(Lesson lesson, List<Integer> t) {
         try {
@@ -114,7 +114,7 @@ public class BackQualityServiceImpl implements BackQualityService {
             return 0;
         }
     }
-
+    @Transactional
     @Override
     public boolean editQuality(Lesson lesson, List<Integer> t) {
         try {

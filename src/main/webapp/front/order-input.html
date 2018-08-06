@@ -10,50 +10,125 @@
 
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/mui.css" />
+
 		<!--App自定义的css-->
+		<!--<link rel="stylesheet" href="css/stamp.css" />-->
 		<!-- <link rel="stylesheet" type="text/css" href="../css/app.css" /> -->
 		<style>
+			.mui-fullscreen2 {
+    /*position: absolute;
+    top: 20px;*/
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+			
 			h5 {
 				margin: 5px 7px;
+			}
+			
+			.coupon {
+				position: relative;
+				left: 0;
+				font: 12px Simsun;
+				text-align: center;
+				background: #fff7fa;
+				color: #ff0060;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 8px;
+				margin: 0 10px 0 0;
+				border: 1px dotted #ff0060;
+				float: left;
+				border-left: none;
+				border-right: none;
+			}
+			
+			b {
+				font-size: 14px;
+				font-family: "Microsoft Yahei";
+				float: right;
+				position: relative;
+			}
+		</style>
+		<style>
+			.mui-plus .plus {
+				display: inline;
+			}
+			
+			.plus {
+				display: none;
+			}
+			
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			
+			p {
+				text-indent: 22px;
+			}
+			
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			
+			.mui-popover {
+				height: 300px;
+			}
+			
+			.mui-content {
+				padding: 10px;
 			}
 		</style>
 	</head>
 
 	<body>
 		<h5>预约课程</h5>
-		<form class="mui-card" style="border-radius: 10px;" action='#' method="post" name="Form">
-			<div class="mui-input-row" style="margin:2px 2px;border: 1px solid #C0C0C0;border-radius:10px">
-				<label style="width: 120px;">姓名：</label>
-				<input id="nickname" style="float:left" type="text" placeholder="请输入真实姓名">
-			</div>
-			<div class="mui-input-row" style="margin:2px 2px;border: 1px solid #C0C0C0;border-radius:10px">
-				<label style="width: 120px;">电话：</label>
-				<input id="tel" style="float:left" type="text" placeholder="请输入真实电话">
+		<div class="mui-card mui-fullscreen2" style="border-radius: 10px;" action='#' method="post" name="Form">
+			<form class="mui-input-group">
+			<div class="mui-input-row">
+				<label>姓名：</label>
+				<input id="nickname" type="text" class="mui-input-clear" placeholder="请输入真实姓名" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
 			</div>
 			<div class="mui-input-row">
-				<label>优惠劵</label>
+				<label>电话：</label>
+				<input id="tel" type="text" class="mui-input-clear" placeholder="请输入真实电话" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
 			</div>
-			
-			<select class="mui-btn mui-btn-block">
-					<option value="item-1">item-1</option>
-					<option value="item-2">item-2</option>
-					<option value="item-3">item-3</option>
-					<option value="item-4">item-4</option>
-					<option value="item-5">item-5</option>
-			</select>
+			<div class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						优惠
+						<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>
+					</a>
+					
+				</div>
 
-			
-			
-			<div class="mui-button-row">
-				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " >加入订单</button>
+		
+					
+				
+
 			</div>
-		</form>
+			</form>
 
+			<button id="submit-order" type="button" class="mui-btn mui-btn-danger mui-btn-block">提交</button>
+
+		</div>
 	</body>
 	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
 		var session;
+
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -73,44 +148,47 @@
 
 		$(function() {
 			$.ajax({
-				type:"get",
-				url:"/front/getsession",
-				async:true,
-				dataType:"json",
-				success:function(data){
+				type: "get",
+				url: "/front/getsession",
+				async: true,
+				dataType: "json",
+				success: function(data) {
 					session = data;
-					console.log(session)
+					console.log(session);
+					$("#tel").val(session.tel);
+					$("#nickname").val(session.uname);
 				}
 			});
 		});
-		$("#submit-order").click(function(){
-				var nickname = $("#nickname").val();
-				var tel = $("#tel").val();
-				console.log(tel);
-				console.log(nickname);
-				
-				$.ajax({
-					type: "get",
-					url: "/front/addOrder",
-					async: false,
-					data: {
-						"lid": lid,
-						"branchid": branchid,
-						"nickname": nickname,
-						"tel": tel,
-						"openid":session.openid
-					},
-					dataType:"json",
-					success:function(data){
-						console.log(data); 
-						mui.openWindow("my-order.html")
-//						mui.openWindow("my-order.html");
-					}
-				});
-				
+		$("#submit-order").click(function() {
+			var nickname = $("#nickname").val();
+			var tel = $("#tel").val();
+			console.log(tel);
+			console.log(nickname);
+
+			$.ajax({
+				type: "get",
+				url: "/front/addOrder",
+				async: false,
+				data: {
+					"lid": lid,
+					"branchid": branchid,
+					"nickname": nickname,
+					"tel": tel,
+					"openid": session.openid
+				},
+				dataType: "json",
+				success: function(data) {
+					console.log(data);
+
+					mui.openWindow("my-order.html")
+
+				}
 			});
-		
-		function successfun(data){
+
+		});
+
+		function successfun(data) {
 			alert(data);
 		}
 	</script>

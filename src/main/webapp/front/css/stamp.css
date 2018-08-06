@@ -1,0 +1,105 @@
+	.hongbaoblock {
+    float: left;
+    margin-right: 5.5px;
+    border-radius: 2px;
+    border: 1px solid #eee;
+    width: 247px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 96px;
+    vertical-align: top;
+}
+/*li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style-type:none;
+}*/
+*, :after, :before {
+    box-sizing: inherit;
+}
+.hongbaoblock-count {
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    margin-right: 5px;
+    float: left;
+}
+.hongbaoblock-count, .hongbaoblock-tip {
+    background: url(//shadow.elemecdn.com/faas/desktop/media/img/hongbao.6fac7f.png) no-repeat;
+}
+.hongbaoblock-count, .hongbaoblock-message {
+    height: 100%;
+}
+.hongbaoblock-amount {
+    display: inline-block;
+    padding-top: 14px;
+    line-height: 40px;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: arial;
+    white-space: nowrap;
+    word-spacing: -4px;
+}
+.hongbaoblock-amount:before {
+    content: "\00a5";
+    vertical-align: baseline;
+    margin-right: 3px;
+    font-weight: 400;
+    font-size: 20px;
+}
+.hongbaoblock-amount em:first-child {
+    font-size: 40px;
+}
+em {
+    font-style: normal;
+    font-weight: 400;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+.hongbaoblock-condition {
+    border-radius: 1px;
+    width: 74px;
+    line-height: 20px;
+    margin: 2px auto 0;
+    color: #f74342;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+
+h3 !important{
+	margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+.hongbaoblock-intro !important{
+    line-height: 18px;
+    color: #999;
+    font-size: 12px;
+}
+
+
+
+.hongbaoblock-intro .to {
+    font-style: normal;
+    margin: 0 1px;
+}
+.hongbaoblock-tip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 56px;
+    height: 56px;
+    font-size: 10px;
+    background-position: 0 -216px;
+}
+i, cite, em {
+    font-style: italic;
+}

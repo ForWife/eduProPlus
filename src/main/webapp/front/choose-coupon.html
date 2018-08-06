@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		
+		<style>
+			.coupon {
+				position: relative;
+				left: 0;
+				font: 12px Simsun;
+				text-align: center;
+				background: #fff7fa;
+				color: #ff0060;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 8px;
+				margin: 0 10px 0 0;
+				border: 1px dotted #ff0060;
+				float: left;
+				border-left: none;
+				border-right: none;
+			}
+			
+			b {
+				font-size: 14px;
+				font-family: "Microsoft Yahei";
+				float: right;
+				position: relative;
+			}
+			
+			/*.pro_nowPri {
+				background-color: #FF435E;
+				color: #fff;
+				font-size: 15px;
+				margin-top: 35px;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				position: relative;
+				display: block;
+			}
+			
+			.fr {
+				float: right;
+			}
+			
+			.pro_nowPri .buy-price {
+				font: 36px/50px Arial;
+				font-weight: 700;
+				padding-left: 15px;
+				float: left;
+			}
+			
+			.pro_nowPri .buy-price .old-price {
+				float: left;
+				height: 30px;
+				margin: 10px 0 10px 10px;
+				text-align: left;
+			}
+			
+			.old-price p {
+				display: block;
+				height: 16px;
+				margin: 0;
+				padding: 0;
+				color: #fef181;
+				line-height: 16px;
+				text-decoration: line-through;
+			}
+			
+			.old-price i {
+				font-style: normal;
+			}
+			
+			.old-price span {
+				display: block;
+				height: 12px;
+				font: 12px/12px "Microsoft Yahei";
+				color: #fff;
+			}
+			
+			.go-buy {
+				position: absolute;
+				right: 0;
+				background: #fef490;
+				background: -webkit-gradient(linear, 0 0, right 0, from(#fef490), to(#fee44d));
+				background: -moz-linear-gradient(left, #fef490, #fee44d);
+				filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#fef490, endColorstr=#fee44d);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=1, startColorstr=#fef490, endColorstr=#fee44d)";
+				background: -o-linear-gradient(left, #fef490, #fee44d);
+				width: 80px;
+				font-size: 16px;
+				text-align: center;
+				font-family: "Microsoft Yahei";
+			}
+			
+			.go-buy a {
+				color: #f61d5a;
+				display: block;
+			}
+			
+			blockquote,
+			body,
+			button,
+			caption,
+			dd,
+			div,
+			dl,
+			dt,
+			fieldset,
+			figure,
+			form,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			hr,
+			html,
+			input,
+			legend,
+			li,
+			menu,
+			ol,
+			p,
+			pre,
+			table,
+			td,
+			textarea,
+			th,
+			ul {
+				margin: 0;
+				padding: 0;
+			}
+			
+			<script type="text/javascript" src="http://cmsstatic.dataoke.com//js/scrollTop2.js?v=201808031051"></script><script src="http://cmsstatic.dataoke.com//wap_new/lib/md5.js?v=201808031051"></script>*/
+		.hongbaoblock {
+    float: initial;
+    margin-right: 5.5px;
+    border-radius: 2px;
+    border: 1px solid #eee;
+    width: 500px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 96px;
+    vertical-align: top;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style-type:none;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+.hongbaoblock-count {
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    margin-right: 5px;
+    float: left;
+}
+.hongbaoblock-count, .hongbaoblock-tip {
+    background: url(//shadow.elemecdn.com/faas/desktop/media/img/hongbao.6fac7f.png) no-repeat;
+}
+.hongbaoblock-count, .hongbaoblock-message {
+    height: 100%;
+}
+.hongbaoblock-amount {
+    display: inline-block;
+    padding-top: 14px;
+    line-height: 40px;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: arial;
+    white-space: nowrap;
+    word-spacing: -4px;
+}
+.hongbaoblock-amount:before {
+    content: "\00a5";
+    vertical-align: baseline;
+    margin-right: 3px;
+    font-weight: 400;
+    font-size: 20px;
+}
+.hongbaoblock-amount em:first-child {
+    font-size: 40px;
+}
+em {
+    font-style: normal;
+    font-weight: 400;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+.hongbaoblock-condition {
+    border-radius: 1px;
+    width: 74px;
+    line-height: 20px;
+    margin: 2px auto 0;
+    color: #f74342;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+
+h3 !important{
+	margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+.hongbaoblock-intro !important{
+    line-height: 18px;
+    color: #999;
+    font-size: 12px;
+}
+
+
+
+.hongbaoblock-intro .to {
+    font-style: normal;
+    margin: 0 1px;
+}
+.hongbaoblock-tip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 56px;
+    height: 56px;
+    font-size: 10px;
+    background-position: 0 -216px;
+}
+i, cite, em {
+    font-style: italic;
+}
+
+		</style>
+	</head>
+
+	<body>
+
+		<span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>10</b></span>
+		<br />
+		<hr />
+		<!--<div class="pro_nowPri theme-bg-color-1">
+			<div class="buy-price">9.9</div>
+			<div class="old-price">
+				<p><i>￥</i>19.9</p>
+				<span>券后价</span>
+			</div>
+			<div class="go-buy">
+				<a class="theme-color-1" data-gid="15200063" data-ci="563614" data-in="1" data-uid="793926" data-cn="39" data-position="CMS" href="/index.php?r=index/middleurl&amp;id=15200063" target="_blank">去抢购</a>
+			</div>
+		</div>-->
+		<hr />
+		<hr />
+		
+		<br /><br /><br /><br /><br />
+		
+		<div class="mui-card">
+		<ul >
+		<li class="hongbaoblock ng-scope" ng-repeat="data in pageContext.pageData">
+								<div class="hongbaoblock-count"><span class="hongbaoblock-amount"><em class="ng-binding">5</em> <em class="ng-binding">.0</em></span>
+									<p class="hongbaoblock-condition ng-binding">满29元可用</p>
+								</div>
+								<h3 class="hongbaoblock-name ng-binding">果蔬商超红包</h3>
+								<div class="hongbaoblock-intro">
+									<p>仅限手机客户端使用</p>
+									<!-- ngIf: data.subscriber_line_number -->
+									<p class="ng-binding">2018-08-04<i class="to">至</i>2018-08-04</p>
+								</div>
+								<!-- ngIf: data.used || data.passed --><i class="hongbaoblock-tip ng-scope" ng-if="data.used || data.passed"></i>
+								<!-- end ngIf: data.used || data.passed -->
+							</li>
+			</ul>			
+							<hr />
+		
+		<li class="hongbaoblock ng-scope" style="display: list-item; text-align: -webkit-match-parent; list-style-type:none;" ng-repeat="data in pageContext.pageData">
+			<div style="display: block;" class="hongbaoblock-count"><span class="hongbaoblock-amount"><em class="ng-binding">5</em> <em class="ng-binding">.0</em></span>
+				<p style="display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;" class="hongbaoblock-condition ng-binding">满29元可用</p>
+			</div>
+			<h3 class="hongbaoblock-name ng-binding">果蔬商超红包</h3>
+			<div class="hongbaoblock-intro" style="display: block;">
+				<p style="display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; line-height: 18px; color: #999;font-size: 12px;" class="ng-binding">仅限手机客户端使用</p>
+				<!-- ngIf: data.subscriber_line_number -->
+				<p style="display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; line-height: 18px; color: #999;font-size: 12px;" class="ng-binding" class="ng-binding">2018-08-04<i class="to">至</i>2018-08-04</p>
+			</div>
+			<!-- ngIf: data.used || data.passed --><i class="hongbaoblock-tip ng-scope" ng-if="data.used || data.passed"></i>
+			<!-- end ngIf: data.used || data.passed -->
+		</li>
+		
+		<br /><br /><br /><br /><br />
+		<li class="hongbaoblock ng-scope" ng-repeat="data in pageContext.pageData">
+			<div class="hongbaoblock-count"><span class="hongbaoblock-amount"><em class="ng-binding">5</em> <em class="ng-binding">.0</em></span>
+				<p class="hongbaoblock-condition ng-binding">满29元可用</p>
+			</div>
+			<h3 class="hongbaoblock-name ng-binding">果蔬商超红包</h3>
+			<div class="hongbaoblock-intro">
+				<p  style="line-height: 18px; color: #999;font-size: 12px;">仅限手机客户端使用</p>
+				<!-- ngIf: data.subscriber_line_number -->
+				<p  style="line-height: 18px; color: #999;font-size: 12px;" class="ng-binding">2018-08-04<i class="to">至</i>2018-08-04</p>
+			</div>
+			<!-- ngIf: data.used || data.passed --><i class="hongbaoblock-tip ng-scope" ng-if="data.used || data.passed"></i>
+			<!-- end ngIf: data.used || data.passed -->
+		</li>
+		</div>
+
+		<!--<div style="display:none"><div style="display:none">-->
+		<!--<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a3d16059170b45c7f772623026671d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>-->
+		<!--  <script src="http://v1.cnzz.com/stat.php?id=5899338&web_id=5899338" language="JavaScript"></script>-->
+		
+		
+		</div>
+		</div>
+		
+		
+		<div class="demo-container demo"><style>
+  .demo{width:410px;}
+  .stamp *{padding: 0;margin: 0;list-style:none;font-family:"Microsoft YaHei",'Source Code Pro', Menlo, Consolas, Monaco, monospace;}
+
+  .stamp {
+    width: 387px;
+    height: 140px;
+    padding: 0 10px;
+    margin-bottom: 50px;
+
+    position: relative;
+    overflow: hidden;
+
+  }
+  .stamp:before {
+    content: '';
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+
+    z-index: -1;
+  }
+  .stamp:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+    z-index: -2;
+  }
+
+  .stamp i{
+    position: absolute;
+    left: 20%;
+    top: 45px;
+    height: 190px;
+    width: 390px;
+    background-color: rgba(255,255,255,.15);
+    transform: rotate(-30deg);
+  }
+  .stamp .par{
+    float: left;
+    padding: 16px 15px;
+    width: 220px;
+    border-right:2px dashed rgba(255,255,255,.3);
+    text-align: left;
+  }
+  .stamp .par p{color:#fff;font-size: 16px;
+    line-height: 21px;}
+  .stamp .par span{
+    font-size: 50px;
+    color:#fff;
+    margin-right: 5px;
+    line-height: 65px;
+  }
+  .stamp .par .sign{font-size: 34px;}
+  .stamp .par sub{position: relative;top:-5px;
+    color:rgba(255,255,255,.8);
+  }
+  .stamp .copy{
+    display: inline-block;
+    padding:21px 14px;
+    width:100px;
+    vertical-align: text-bottom;
+    font-size: 30px;
+    color:rgb(255,255,255);
+    text-align: center;
+    line-height: initial;
+  }
+  .stamp .copy p{font-size: 16px;margin-top: 15px;}
+  .stamp01{
+    background: #F39B00;
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);
+    background-size: 15px 15px;
+    background-position: 9px 3px;
+  }
+  .stamp01:before{
+    background-color:#F39B00;
+  }
+  .stamp02{
+    background: #D24161;
+    background: radial-gradient(transparent 0, transparent 5px, #D24161 5px);
+    background-size: 15px 15px;
+    background-position: 9px 3px;
+  }
+  .stamp02:before{
+    background-color:#D24161;
+  }
+  .stamp03{
+    background: #7EAB1E;
+    background: radial-gradient(transparent 0, transparent 5px, #7EAB1E 5px);
+    background-size: 15px 15px;
+    background-position: 9px 3px;
+  }
+  .stamp03:before{
+    background-color:#7EAB1E;
+  }
+  .stamp03 .copy{
+    padding: 10px 6px 10px 12px;
+    font-size: 24px;
+  }
+  .stamp03 .copy p{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+  .stamp03 .copy a{
+    background-color:#fff;
+    color:#333;
+    font-size: 14px;
+    text-decoration:none;
+    padding:5px 10px;
+    border-radius:3px;
+    display: block;
+  }
+
+
+  .stamp04{
+    width: 94%;
+    background: #50ADD3;
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 4px, #50ADD3 4px);
+    background-size: 12px 8px;
+    background-position: -5px 10px;
+  }
+  .stamp04:before{
+    background-color:#50ADD3;
+    left: 5px;
+    right: 5px;
+  }
+  .stamp04 .copy{
+    padding: 10px 6px 10px 12px;
+    font-size: 24px;
+  }
+  .stamp04 .copy p{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+  .stamp04 .copy a{
+    background-color:#fff;
+    color:#333;
+    font-size: 14px;
+    text-decoration:none;
+    padding:5px 10px;
+    border-radius:3px;
+    display: block;
+  }
+</style>
+
+  <div class="demo">
+    <div class="stamp stamp02">
+      <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub><p>订单满100.00元</p></div>
+      <div class="copy">副券<p>2015-08-13<br>2016-08-13</p></div>
+      <i></i>
+    </div>
+  </div></div>
+</div></div>
+	</body>
+
+</html>

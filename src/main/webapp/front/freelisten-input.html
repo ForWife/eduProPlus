@@ -63,6 +63,12 @@
 		var branchid = request["branchid"];
 
 		$(function() {
+			
+			$.ajax({
+				type:"get",
+				url:"",
+				async:true
+			});
 			$("#submit-order").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();
@@ -73,14 +79,15 @@
 					url: "/front/addOrder",
 					async: false,
 					data: {
-						"lid": lid,
-						"branchid": branchid,
-						"nickname": nickname,
-						"tel": tel
+						lid: lid,
+						branchid: branchid,
+						nickname: nickname,
+						tel: tel
 					},
 					dataType:"json",
 					success:function(data){
 						/* console.log("成功"); */
+						console.log(data)
 						mui.openWindow({
 							url: "my-order.html"
 					});

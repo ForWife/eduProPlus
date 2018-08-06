@@ -4,6 +4,10 @@ import com.neu.beans.Enterprise;
 import com.neu.beans.Swiper;
 import com.neu.mapper.BackCompanyMapper;
 import com.neu.service.BackCompanyService;
+import com.neu.util.RedisConnectionPoor;
+
+import redis.clients.jedis.Jedis;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +55,8 @@ public class BackCompanyServiceImpl implements BackCompanyService {
             for (Swiper swiper : swipers) {
                 companyMapper.updateSwiper(swiper);
             }
+            Jedis jedis = RedisConnectionPoor.getJedis();
+            jedis.del("imgurl");
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

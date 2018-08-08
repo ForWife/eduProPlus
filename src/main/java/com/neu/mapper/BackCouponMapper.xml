@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.mapper.BackCouponMapper">
+	<select id = "getSubCoupon" parameterType="int" resultType = "com.neu.beans.Coupon">
+		select *
+		from coupon
+		where qid = #{qid} and money &lt; 0
+	</select>
+	<select id = "getDiscountCoupon" parameterType="int" resultType = "com.neu.beans.Coupon">
+		select *
+		from coupon
+		where qid = #{qid} and money > 0
+	</select>
+		
+	<select id = "getLessonType" parameterType="int" resultType = "String">
+		select distinct category
+		from lesson
+		where qid = #{qid}
+	</select>
+	
+	<select id = "getId" resultType = "int">
+		select max(cid) + 1 from  coupon
+	</select>
+	
+	<insert id="addCoupon">
+		insert into coupon(cid, qid, category, total, deadline, full, score, money)
+		values(#{cid}, #{qid}, #{category}, #{total}, #{deadline}, #{full}, #{score}, #{money})
+	</insert>
+</mapper>

@@ -7,6 +7,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class FrontFilter
@@ -35,7 +37,11 @@ public class FrontFilter implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		HttpSession session = ((HttpServletRequest) request).getSession();
+        if (session.getAttribute("user") == null) {
+            ((HttpServletRequest) request).getRequestDispatcher("/fronttestlogin.html").forward(request, response);
+        } else chain.doFilter(request, response);
+		
 	}
 
 	/**

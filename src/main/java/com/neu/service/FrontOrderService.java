@@ -24,7 +24,7 @@ public interface FrontOrderService {
 
 	public int cancel( int oid);
 	
-	public int addOrder(SOrder sorder)throws Exception;
+	public int addOrder(SOrder sorder )throws Exception;
 }
 
 

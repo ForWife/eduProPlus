@@ -9,6 +9,7 @@ import com.neu.service.BackGetAllMessageService;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -41,18 +42,8 @@ public class BackCircleOfFriendShowHandler {
 		List<Message> result = backGetAllMessageService.getAllMessage(user.getQid());
 		for(Message r : result) {
 			for(MessageImg m : ((Message) r).getMessageImg()) {
-				System.out.println(request.getServletContext().getRealPath("/"));
-//				File file = new File(request.getServletContext().getRealPath("/") + "upload/" + m.getImgurl());
-//				System.out.println(file.getCanonicalPath());
-//				FileInputStream fis = new FileInputStream(file);
-//				BufferedImage bufferedImg = ImageIO.read(fis);
-//				int imgWidth = bufferedImg.getWidth();
-//				int imgHeight = bufferedImg.getHeight();
-//				if(imgWidth > imgHeight) {
-//					m.setFlag(0);
-//				}else {
-//					m.setFlag(1);
-//				}
+				String img = m.getImgurl();
+				m.setFlag(Integer.parseInt(img.substring(img.length()-1, img.length())));
 			}
 		}
 		System.out.println(result);
@@ -81,9 +72,17 @@ public class BackCircleOfFriendShowHandler {
 		String path;
 		List<String> pathOfPicture = new ArrayList<>();
 		for(MultipartFile file : files) {
-//			System.out.println(file.getOriginalFilename());
-//			path =  (new Date().getTime()) + file.getOriginalFilename();
 			String filename = System.currentTimeMillis() + file.getOriginalFilename();
+			InputStream in = file.getInputStream();
+			BufferedImage bufferedImg = javax.imageio.ImageIO.read(in);
+			int imgWidth = bufferedImg.getWidth();
+			int imgHeight = bufferedImg.getHeight();
+			if(imgWidth > imgHeight) {
+				filename = filename + "0";
+			}else {
+				filename = filename + "1";
+			}
+			System.out.println("文件名"+filename);
 			FastDFSFile fastDFSFile = new FastDFSFile(file.getBytes(), filename.substring(filename.lastIndexOf(".")+1));
 			NameValuePair[] meta_list = new NameValuePair[4];
 			meta_list[0] = new NameValuePair("fileName", filename);
@@ -92,9 +91,6 @@ public class BackCircleOfFriendShowHandler {
 			meta_list[3] = new NameValuePair("fileAuthor", "EduPro");
 			String filePath = FileManager.upload(fastDFSFile,meta_list);
 			pathOfPicture.add(filePath);
-			System.out.println(filePath);
-//			System.out.println(pathOfService + path);
-//			file.transferTo(new File(pathOfService + "upload/" + path));
 		}
 		backGetAllMessageService.setMessage(user.getQid(), partChoose, areaJs, pathOfPicture);
 	}

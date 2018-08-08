@@ -3,15 +3,20 @@ package com.neu.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.neu.beans.Address;
+import com.neu.beans.Coupon;
 import com.neu.beans.Lesson;
 import com.neu.beans.SOrder;
+import com.neu.mapper.FrontCouponMapper;
 import com.neu.mapper.FrontLessonMapper;
 import com.neu.mapper.FrontOrderMapper;
 import com.neu.po.OrderVO;
@@ -25,6 +30,9 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	
 	@Autowired
 	FrontLessonMapper lessonMapper;
+	
+	@Autowired
+	FrontCouponMapper couponMapper;
 	
 	@Override
 	public List<OrderVO> findAllorder(String userid) {
@@ -159,6 +167,7 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
+	@Transactional
 	public int deleteorder( int oid) {
 		System.out.println("...Service...deleteorder().....");
 		int a;	
@@ -191,8 +200,6 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 		int a;			
 		try {
 			a=mapper.cancelbyoid(oid);
-			
-		
 		} catch (Exception e) {
 			a=0;
 			e.printStackTrace();
@@ -201,17 +208,15 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 	}
 
 	@Override
+	@Transactional
 	public int addOrder(SOrder sorder) throws Exception {
 		System.out.println("FrontOrderServiceImpl.addOrder()");
 		
 		//get transationid
 		String transationid = "" ;
-//		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		SimpleDateFormat sfdate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		System.out.println(sfdate);
-		 
 		transationid = sfdate.format(new Date());
-		//and three random
 		Random random = new Random();
 		for (int i = 0; i < 3; ++i) {
 			int j = random.nextInt(10);
@@ -223,7 +228,17 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 		
 		Lesson lesson = mapper.getLesssonById(sorder.getLid());
 		sorder.setTotal(lesson.getLprice());
-		
+		System.out.println(sorder.getCid());
+		if (sorder.getCid()==0) {
+			sorder.setActual(lesson.getLprice());
+		}else{
+			Coupon coupon = couponMapper.getCoupon(sorder.getCid());
+			sorder.setActual(sorder.getTotal()*coupon.getMoney());
+			Map<String, Object>map = new HashMap<>();
+			map.put("cid", sorder.getCid());
+			map.put("openid", sorder.getOpenid());
+			couponMapper.useCoupon(map);
+		}
 		mapper.addOrder(sorder);
 		
 		return 0;

@@ -95,7 +95,24 @@
 
 	<body>
 		<h5>预约课程</h5>
+		
+		<div class="mui-card">
+				<div id="class-img" class="mui-card-header mui-card-media" style="height:45vw;background-image:url(images/muwu.jpg)"></div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<p id="class-date">Posted on January 18, 2016</p>
+						<p id="class-name" style="color: #333;">这里显示文章摘要，让读者对文章内容有个粗略的概念...</p>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<!--<a  class="mui-card-link">Like</a>-->
+					<label id="class-price" class="mui-card-link">Read more</label>
+				</div>
+			</div>
+		
 		<div class="mui-card mui-fullscreen2" style="border-radius: 10px;" action='#' method="post" name="Form">
+			
+			
 			<form class="mui-input-group">
 			<div class="mui-input-row">
 				<label>姓名：</label>
@@ -106,17 +123,10 @@
 				<input id="tel" type="text" class="mui-input-clear" placeholder="请输入真实电话" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
 			</div>
 			<div class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+					<a id="youhui"  class="mui-navigate-right" href="javascript:choosecoupon()">
 						优惠
-						<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>
 					</a>
-					
-				</div>
-
-		
-					
-				
-
+			</div>
 			</div>
 			</form>
 
@@ -128,7 +138,6 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
 		var session;
-
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -145,6 +154,7 @@
 		request = GetRequest();
 		var lid = request["lid"];
 		var branchid = request["branchid"];
+		var cid = request["cid"];
 
 		$(function() {
 			$.ajax({
@@ -159,13 +169,61 @@
 					$("#nickname").val(session.uname);
 				}
 			});
+			$.ajax({
+				type:"get",
+				url:"/front/findLessonById",
+				async:true,
+				data:{"lid":lid,"branchid":branchid},
+				dataType:"json",
+				success:function(data){
+					console.log(data)
+					$("#class-img").attr("style","height:45vw;background-image:url(../upload/"+data.lesson.imgurl+")")
+					$("#class-date").text(new Date(parseInt(data.lesson.pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '))
+					$("#class-name").text(data.lesson.lname)
+					$("#class-price").text("¥"+data.lesson.lprice)
+					if (cid == ""|| cid == null) {
+						console.log(cid)
+//						$("#youhui").html('<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>');	
+
+						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">未使用优惠券</span>');
+					} else{
+						console.log(cid)
+						console.log("+-+_+_+_+_+")
+						useCoupon(cid)
+						
+					}
+				}
+			});
 		});
+		function choosecoupon(){
+			mui.openWindow("choose-coupon.html?lid="+lid+"&branchid="+branchid);
+		}
+		function useCoupon(cid){
+			$.ajax({
+				type:"get",
+				url:"/front/getaCoupon?cid="+cid ,
+				async:true,
+				dataType:"json",
+				success:function(data){
+					console.log(data)
+					if (data.money>0) {
+						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">打折'+data.money*100+'%</span>');	
+					} else{
+						var money = -data.money;
+						console.log(money)
+						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">满'+data.full+'减'+money+'</span>');	
+					}
+					
+				}
+				
+			});
+		}
+		
 		$("#submit-order").click(function() {
 			var nickname = $("#nickname").val();
 			var tel = $("#tel").val();
 			console.log(tel);
 			console.log(nickname);
-
 			$.ajax({
 				type: "get",
 				url: "/front/addOrder",
@@ -175,7 +233,8 @@
 					"branchid": branchid,
 					"nickname": nickname,
 					"tel": tel,
-					"openid": session.openid
+					"openid": session.openid,
+					"cid":cid
 				},
 				dataType: "json",
 				success: function(data) {

@@ -49,13 +49,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <filter>
+ <!--  <filter>
     <display-name>FrontFilter</display-name>
     <filter-name>FrontFilter</filter-name>
     <filter-class>com.neu.FrontFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>FrontFilter</filter-name>
-    <url-pattern>/FrontFilter</url-pattern>
-  </filter-mapping>
+    <url-pattern>/front/*</url-pattern>
+  </filter-mapping> -->
 </web-app>

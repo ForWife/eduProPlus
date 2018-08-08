@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+    	<script src="js/jquery-3.3.1.js"></script>
+		<style>
+			.chartSize {
+				height: 430px;
+				width: 100%px;
+			}
+			
+			.top a {
+				text-decoration: none;
+				out-line: none;
+				color: black;
+			}
+			
+			.back {
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+			
+			.content {
+				background: #eeeeee;
+				width: 40%;
+				z-index: 1;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 5%;
+				overflow: auto;
+				min-height: 80%;
+			}
+			
+			.back .content a {
+				text-decoration: none;
+				out-line: none;
+				color: white;
+				cursor: pointer;
+				float: right;
+				font-size: 25px;
+				margin-right: 10px;
+			}
+			/*表格*/
+			
+			.tableStyle {
+				margin: 2%;
+				width: 96%;
+				border: 1px solid #d9d9d9;
+				border-collapse: collapse;
+				border-spacing: 0;
+				table-layout: fixed;
+			}
+			
+			.tableStyle th {
+				padding-left: 5px;
+				text-align: left;
+				height: 60px;
+				background-color: #f7f7f7;
+				background-position: 0 0;
+				background-repeat: repeat-x;
+				font-weight: normal;
+				font-size: 11px;
+				color: #666;
+				background: url(img/listHeadBackground.JPG) no-repeat;
+				background-size: 100% 100%;
+				border: 1px solid #d9d9d9;
+			}
+			
+			.tableStyle .th1 {
+				width: 5%;
+			}
+			
+			.tableStyle .th2 {
+				width: 10%;
+			}
+			
+			.tableStyle .th3 {
+				width: 7%;
+			}
+			
+			.tableStyle .th4 {
+				width: 7%;
+			}
+			
+			.tableStyle .th5 {
+				width: 7%;
+			}
+			
+			.tableStyle .th6 {
+				width: 14%;
+			}
+			
+			.tableStyle .th7 {
+				width: 7%;
+			}
+			
+			.tableStyle .th8 {
+				width: 7%;
+			}
+			
+			.tableStyle .trBackground {
+				padding-left: 10px;
+				text-align: left;
+				font-size: 11px;
+				background-color: #f7f7f7;
+				height: 60px;
+				line-height: 18px;
+			}
+			
+			.tableStyle .trBackground2 {
+				padding-left: 10px;
+				text-align: left;
+				font-size: 11px;
+				height: 60px;
+				line-height: 18px;
+			}
+			
+			.inputStyle {
+				margin: 10%;
+			}
+			/*按钮*/
+			
+			.button {
+				color: #666;
+				background-color: #EEE;
+				border-color: #EEE;
+				font-weight: 300;
+				font-size: 16px;
+				font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				text-decoration: none;
+				text-align: center;
+				line-height: 40px;
+				height: 40px;
+				padding: 0 40px;
+				margin: 0;
+				display: inline-block;
+				appearance: none;
+				cursor: pointer;
+				border: none;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-transition-property: all;
+				transition-property: all;
+				-webkit-transition-duration: .3s;
+				transition-duration: .3s;
+			}
+			
+			.button:visited {
+				color: #666;
+			}
+			
+			.button:hover,
+			.button:focus {
+				background-color: #f6f6f6;
+				text-decoration: none;
+				outline: none;
+			}
+			
+			.button:active {
+				text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+				text-decoration: none;
+				background-color: #eeeeee;
+				border-color: #cfcfcf;
+				color: #d4d4d4;
+				-webkit-transition-duration: 0s;
+				transition-duration: 0s;
+				-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+			}
+			
+			.button:disabled {
+				top: 0 !important;
+				background: #EEE !important;
+				border: 1px solid #DDD !important;
+				text-shadow: 0 1px 1px white !important;
+				color: #CCC !important;
+				cursor: default !important;
+				appearance: none !important;
+				-webkit-box-shadow: none !important;
+				box-shadow: none !important;
+				opacity: .8 !important;
+			}
+			
+			.button-primary {
+				background-color: #009688;
+				border-color: #009688;
+				color: #FFF;
+			}
+			
+			.button-primary:visited {
+				color: #FFF;
+			}
+			
+			.button-primary:hover,
+			.button-primary:focus {
+				background-color: #4cb0f9;
+				border-color: #4cb0f9;
+				color: #FFF;
+			}
+			
+			.button-primary:active {
+				background-color: #2798eb;
+				border-color: #2798eb;
+				color: #0880d7;
+			}
+			
+			.button-rounded {
+				border-radius: 4px;
+			}
+			
+			.button-small {
+				font-size: 12px;
+				height: 30px;
+				line-height: 30px;
+				padding: 0 30px;
+			}
+		</style>
+
+		<script>
+			function changeDiv1() {
+				document.getElementById("sub").style.display = "block";
+				document.getElementById("discount").style.display = "none";
+				document.getElementById("top2").style.color = "black";
+				document.getElementById("top1").style.color = "#009688";
+				$.ajax({
+					url: "/back/getSubCoupon",
+					type: "get",
+					success:function(data){
+						console.log(data);
+						var table_body = '';
+						for(var i = 0; i < data.length; i++){
+							if(i % 2 == 0){
+								table_body += '<tr>';
+								table_body += '<td class="trBackground">'+data[i].cid+'</td>';
+								table_body += '<td class="trBackground">'+data[i].category+'</td>';
+								table_body += '<td class="trBackground">'+(-data[i].money)+'</td>';
+								table_body += '<td class="trBackground">'+data[i].total+'</td>';
+								table_body += '<td class="trBackground">'+data[i].get+'</td>';
+								table_body += '<td class="trBackground">'+new Date(parseInt(data[i].deadline)).toLocaleString().replace(/:\d{1,2}$/,' ')+'</td>';
+								table_body += '<td class="trBackground">'+data[i].full+'</td>';
+								table_body += '<td class="trBackground">'+data[i].score+'</td>';
+								table_body += '</tr>';
+							}else{
+								table_body += '<tr>';
+								table_body += '<td class="trBackground2">'+data[i].cid+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].category+'</td>';
+								table_body += '<td class="trBackground2">'+(-data[i].money)+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].total+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].get+'</td>';
+								table_body += '<td class="trBackground2">'+new Date(parseInt(data[i].deadline)).toLocaleString().replace(/:\d{1,2}$/,' ')+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].full+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].score+'</td>';
+								table_body += '</tr>';
+							}
+						}
+						$("#table_body1").html(table_body);
+						
+					}
+				})
+			}
+
+			function changeDiv2() {
+				document.getElementById("sub").style.display = "none";
+				document.getElementById("discount").style.display = "block";
+				document.getElementById("top1").style.color = "black";
+				document.getElementById("top2").style.color = "#009688";
+				$.ajax({
+					url: "/back/getDiscountCoupon",
+					type: "get",
+					success:function(data){
+						console.log(data);
+						var table_body = '';
+						for(var i = 0; i < data.length; i++){
+							if(i % 2 == 0){
+								table_body += '<tr>';
+								table_body += '<td class="trBackground">'+data[i].cid+'</td>';
+								table_body += '<td class="trBackground">'+data[i].category+'</td>';
+								table_body += '<td class="trBackground">'+data[i].money*10+'折</td>';
+								table_body += '<td class="trBackground">'+data[i].total+'</td>';
+								table_body += '<td class="trBackground">'+data[i].get+'</td>';
+								table_body += '<td class="trBackground">'+new Date(parseInt(data[i].deadline)).toLocaleString().replace(/:\d{1,2}$/,' ')+'</td>';
+								table_body += '<td class="trBackground">'+data[i].score+'</td>';
+								table_body += '</tr>';
+							}else{
+								table_body += '<tr>';
+								table_body += '<td class="trBackground2">'+data[i].cid+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].category+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].money*10+'折</td>';
+								table_body += '<td class="trBackground2">'+data[i].total+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].get+'</td>';
+								table_body += '<td class="trBackground2">'+new Date(parseInt(data[i].deadline)).toLocaleString().replace(/:\d{1,2}$/,' ')+'</td>';
+								table_body += '<td class="trBackground2">'+data[i].score+'</td>';
+								table_body += '</tr>';
+							}
+						}
+						$("#table_body2").html(table_body);
+					}
+				})
+			}
+			
+			function getLessonType(){
+				$.ajax({
+					url: "/back/getLessonType",
+					type: "get",
+					success:function(data){
+						console.log(data);
+						var lessonType = '<option>all</option>';
+						for(var i = 0 ; i < data.length ; i++){
+							lessonType += '<option>'+data[i]+'</option>';
+						}
+						$("#lessonType").html(lessonType);
+					}
+				})
+			}
+		</script>
+	</head>
+
+	<body style="background-color: #F2F2F2;">
+		<div style="margin: 2%">
+			<div class="top" style="padding: 1.5%;background: #FFFFFF; ">
+				<span style="margin:7px; font-size:14px;">
+					<a id = "top1" href = "javascript:changeDiv1()">满减券</a>
+				</span>
+				<span style="margin:7px; font-size:14px;">
+					<a id = "top2" href = "javascript:changeDiv2()">折扣券</a>
+				</span>
+				<span style="margin:2px; font-size:14px; float:right">
+					<a href = "javascript:show()">添加</a>
+				</span>
+			</div>
+			<div style="padding: 1.5%;background: #FFFFFF; border-top: #d9d9d9 1px solid; ">
+				<div id="sub">
+					<table class="tableStyle">
+						<thead>
+							<tr>
+								<th class="th1">编号</th>
+								<th class="th2">类别</th>
+								<th class="th3">面额</th>
+								<th class="th4">总票数</th>
+								<th class="th5">已领票数</th>
+								<th class="th6">截止日期</th>
+								<th class="th7">满减金额</th>
+								<th class="th8">兑换积分</th>
+							</tr>
+						</thead>
+						<tbody id="table_body1">
+							
+						</tbody>
+					</table>
+				</div>
+				<div id="discount">
+					<table class="tableStyle">
+						<thead>
+							<tr>
+								<th class="th1">编号</th>
+								<th class="th2">类别</th>
+								<th class="th3">折扣数</th>
+								<th class="th4">总票数</th>
+								<th class="th5">已领票数</th>
+								<th class="th6">截止日期</th>
+								<th style="width: 14%;">兑换积分</th>
+							</tr>
+						</thead>
+						<tbody id="table_body2">
+							
+						</tbody>
+					</table>
+				</div>
+				<script type="text/javascript">
+					changeDiv1();
+					getLessonType();
+				</script>
+			</div>
+
+		</div>
+		<!-- 弹窗内容开始 -->
+		<div id="background" class="back">
+			<div class="content">
+				<div>
+					<a href="javascript:close()">×</a>
+				</div>
+				<div class="inputStyle">
+					<div style="font-size:30px;font-family: KaiTi;">
+						添加优惠券
+					</div>
+					<div style="margin-top: 20px;margin-left: 10px">
+						<input id="radio1" type="radio" name="type" checked="checked" style="font-size: 14px;"> 满减券
+						</input>
+						<input id="radio2" type="radio" name="type" style="margin-left: 15px;font-size: 14px;"> 折扣券
+						</input>
+					</div>
+					<div style="margin-left: 10px">
+						<div style="margin-top: 10px;">
+							<p style="font-size: 14px;">
+								课程类别
+								<select id="lessonType" style="margin-left: 5px; width: 167px;height: 21px;">
+								</select>
+							</p>
+						</div>
+						<div id="type1">
+							<div style="margin-top: 10px;">
+								<p style="font-size: 14px;">票券面额 <input id = "money1" style="margin-left: 10px;" placeholder="10元"></p>
+							</div>
+							<div style="margin-top: 10px;">
+								<p style="font-size: 14px;">满减金额<input id = "full" style="margin-left: 10px;" placeholder="100元"></p>
+							</div>
+						</div>
+
+						<div id="type2" style="display:none;">
+							<div style="margin-top: 10px;">
+								<p style="font-size: 14px;">票券折扣<input id = "money2" style="margin-left: 10px;" placeholder="9.5折"></p>
+							</div>
+						</div>
+						<div style="margin-top: 10px;">
+							<p style="font-size: 14px;">总票券数<input id = "total" style="margin-left: 10px;"></p>
+						</div>
+						<div style="margin-top: 10px;">
+							<p style="font-size: 14px;">截止日期<input id = "deadline" style="margin-left: 10px; width: 161px;"  type="date"></p>
+						</div>
+						<div style="margin-top: 10px;">
+							<p style="font-size: 14px;">兑换积分<input id = "score" style="margin-left: 10px;"></p>
+						</div>
+					</div>
+					<center>
+						<input id = "buttonOnclock" type="button" value="提交" class="button button-primary button-rounded button-small">
+					</center>
+				</div>
+
+			</div>
+		</div>
+		<!-- 弹窗内容结束 -->
+		<script>
+			var radio1 = document.getElementById('radio1');
+			var radio2 = document.getElementById('radio2');
+			var buttonOnclock = document.getElementById('buttonOnclock');
+			var lessonType = null;
+			var money1 = null;
+			var full = null;
+			var money2 = null;
+			var total = null;
+			var deadline = null;
+			var score = null;
+			function show() {
+				document.getElementById('background').style.display = "block";
+			}
+
+			function close() {
+				document.getElementById('background').style.display = "none";
+			}
+			radio1.onclick = function show1() {
+				document.getElementById('type1').style.display = "block";
+				document.getElementById('type2').style.display = "none";
+			}
+			radio2.onclick = function show1() {
+				document.getElementById('type1').style.display = "none";
+				document.getElementById('type2').style.display = "block";
+			}
+			buttonOnclock.onclick = function addCoupon(){
+				lessonType = document.getElementById("lessonType").value;
+				money1 = document.getElementById("money1").value;
+				full = document.getElementById("full").value;
+				money2 = document.getElementById("money2").value;
+				total = document.getElementById("total").value;
+				deadline = document.getElementById("deadline").value;
+				score = document.getElementById("score").value;
+					console.log("-------------"+money1);
+			
+					if(money1 == ""){
+						money1 = 0;
+						full = -1;
+					}else{
+						money2 = 0;
+					}
+				$.ajax({
+					url: "/back/addCoupon",
+					type: "get",
+					data:{"lessonType" : lessonType,
+						  "money1" : money1,
+						  "full" : full,
+						  "money2" : money2,
+						  "total" : total,
+						  "deadline" : deadline,
+						  "score" : score},
+					success:function(data){
+						location.reload();
+					}
+				})
+			}
+			window.onclick = function close(e) {
+				if(e.target == document.getElementById('background')) {
+					document.getElementById('background').style.display = "none";
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -16,4 +16,9 @@
 	<select id="findreserveing" resultType="com.neu.po.FreeListenVO" parameterType="String">
 	   select  a.address,a.tel,b.title,b.imgurl,DATE_FORMAT(b.pubtime,"%Y-%c-%d") pubtime,DATE_FORMAT(c.booktime,"%Y-%c-%d %h:%i:%s") booktime,c.status from address as a left join freelisten as b on (a.id=b.branchid) left join  freelistenbook as c on(c.fid=b.id) where c.tel=#{userid} and c.status='待处理' order by c.booktime desc
 	</select>
+	
+	<insert id="addReserve" parameterType="com.neu.beans.FreeListenBook">
+		INSERT INTO freelistenbook(fid,username,tel,booktime,status,comment,openid)
+		 VALUES(fid,#{username},#{tel},NOW(),'待处理',#{comment},#{openid})
+	</insert>
 </mapper>

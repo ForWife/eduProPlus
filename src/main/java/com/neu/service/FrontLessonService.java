@@ -3,7 +3,7 @@ package com.neu.service;
 import java.util.List;
 import java.util.Map;
 
-
+import com.neu.beans.FreeListen;
 import com.neu.beans.Lesson;
 import com.neu.po.AddressandLesson;
 import com.neu.po.FreeListenByAddress;
@@ -24,4 +24,6 @@ public interface FrontLessonService {
 	
 
 	public List<FreeListenByType> findFreelistenByType(int qid) throws Exception;
+	
+	public FreeListen findFreeListenById(int fid) throws Exception;
 }

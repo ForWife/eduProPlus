@@ -58,7 +58,7 @@
     					   var card ='<div class="ordercard" id="paied'+cardobject.sorder.oid+'"><div class="ordercard_up">';
     					   card+='<div class="ordercard_num">'+(new Date(cardobject.sorder.ordertime)).Format("yyyy-MM-dd hh:mm:ss")+'订购</div>';
     					   card+='<div class="ordercard_state_paied">已付款</div></div>';				  
-    					   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+cardobject.lesson.imgurl+'"></div>';
+    					   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+cardobject.lesson.imgurl+'"></div>';
     					   card+=' <div class="ordercard_name"><p>'+cardobject.lesson.lname+'</p>';
     					   card+='<span class="time_p">'+(new Date(cardobject.lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
     					   card+='开课地点:'+cardobject.address.address+'<br/>';
@@ -99,7 +99,7 @@
     					   var card ='<div class="ordercard" id="cancel'+cardobject.sorder.oid+'"><div class="ordercard_up">';
     					   card+='<div class="ordercard_num">'+(new Date(cardobject.sorder.ordertime)).Format("yyyy-MM-dd hh:mm:ss")+'订购</div>';
     					   card+='<div class="ordercard_state_cancel">退款中</div></div>';						
-    					   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+cardobject.lesson.imgurl+'"></div>';
+    					   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+cardobject.lesson.imgurl+'"></div>';
     					   card+=' <div class="ordercard_name"><p>'+cardobject.lesson.lname+'</p>';
     					   card+='<span class="time_p">'+(new Date(cardobject.lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
     					   card+='开课地点:'+cardobject.address.address+'<br/>';
@@ -161,7 +161,7 @@
 					   card+='<div class="ordercard_state_cancel">退款中</div></div>';
 					   break;
 				   }
-				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+data[i].lesson.imgurl+'"></div>';
+				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+data[i].lesson.imgurl+'"></div>';
 				   card+=' <div class="ordercard_name"><p>'+data[i].lesson.lname+'</p>';
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
@@ -203,7 +203,7 @@
 				   var card ='<div class="ordercard" id="paying'+data[i].sorder.oid+'"><div class="ordercard_up">';
 				   card+='<div class="ordercard_num">'+(new Date(data[i].sorder.ordertime)).Format("yyyy-MM-dd hh:mm:ss")+'订购</div>';				   
 				   card+='<div class="ordercard_state_paying">待付款</div></div>';
-				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+data[i].lesson.imgurl+'"></div>';
+				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+data[i].lesson.imgurl+'"></div>';
 				   card+=' <div class="ordercard_name"><p>'+data[i].lesson.lname+'</p>';
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
@@ -229,7 +229,7 @@
 				   var card ='<div class="ordercard" id="paied'+data[i].sorder.oid+'"><div class="ordercard_up">';
 				   card+='<div class="ordercard_num">'+(new Date(data[i].sorder.ordertime)).Format("yyyy-MM-dd hh:mm:ss")+'订购</div>';
 				   card+='<div class="ordercard_state_paied">已付款</div></div>';				  
-				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+data[i].lesson.imgurl+'"></div>';
+				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+data[i].lesson.imgurl+'"></div>';
 				   card+=' <div class="ordercard_name"><p>'+data[i].lesson.lname+'</p>';
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
@@ -254,7 +254,7 @@
 				   var card ='<div class="ordercard" id="used'+data[i].sorder.oid+'"><div class="ordercard_up">';
 				   card+='<div class="ordercard_num">'+(new Date(data[i].sorder.ordertime)).Format("yyyy-MM-dd hh:mm:ss")+'订购</div>';
                    card+='<div class="ordercard_state_used">已使用</div></div>';
-				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+data[i].lesson.imgurl+'"></div>';
+				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+data[i].lesson.imgurl+'"></div>';
 				   card+=' <div class="ordercard_name"><p>'+data[i].lesson.lname+'</p>';
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
@@ -286,7 +286,7 @@
 					   card+='<div class="ordercard_state_cancel">退款中</div></div>';
 					   break;
 				   }
-				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="../upload/'+data[i].lesson.imgurl+'"></div>';
+				   card+=' <div class="ordercard_body"><div class="ordercard_pic"><img src="'+data[i].lesson.imgurl+'"></div>';
 				   card+=' <div class="ordercard_name"><p>'+data[i].lesson.lname+'</p>';
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
@@ -412,13 +412,6 @@ Date.prototype.Format = function (fmt) { //author:czy
 	</body>
 
 </html>
-
-
-
-
-
-
-
 
 
 

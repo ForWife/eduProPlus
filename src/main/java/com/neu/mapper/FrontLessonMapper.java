@@ -27,5 +27,5 @@ public interface FrontLessonMapper {
 
 	public List<FreeListen> getFreeListenListByAddress(int branchid) throws Exception;
 
-
+	public FreeListen findFreelistenById(int fid) throws Exception;
 }

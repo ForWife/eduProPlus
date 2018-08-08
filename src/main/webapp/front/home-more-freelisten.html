@@ -64,6 +64,9 @@
 					success:successfunction
 				});
 			})
+			function jump(fid){
+				mui.openWindow("freelisten-input.html?fid="+fid)
+			}
 			function successfunction(data){
 				console.log(data);
 				var controls = document.getElementById("segmentedControls");
@@ -86,8 +89,8 @@
 				console.log(freeListens);
 				for (j = 0; j < n; j++) {
 					var card = '<li class="mui-table-view-cell mui-media"  onclick="showwindow()" id="'+freeListens[j].id+'" branchid="'+data[i].address.id+'">'+
-	            						'<a href="javascript:void(0)" id="'+freeListens[j].id+'" branchid="'+freeListens[j].id+'">'+
-	            						'	<img class="mui-media-object mui-pull-right" src="../upload/'+freeListens[j].imgurl+'">'+
+	            						'<a href="javascript:jump('+freeListens[j].id+')" id="'+freeListens[j].id+'" branchid="'+freeListens[j].id+'">'+
+	            						'	<img class="mui-media-object mui-pull-right" src="'+freeListens[j].imgurl+'">'+
 	            						'		<div class="mui-media-body" id='+freeListens[j].id+' branchid="'+data[i].address.id+'">' + freeListens[j].title +
 	            						'			<p class="mui-ellipsis"id='+freeListens[j].id+' branchid="'+data[i].address.id+'">'+ freeListens[j].status +'</p>'+
 	            						'		</div>'+

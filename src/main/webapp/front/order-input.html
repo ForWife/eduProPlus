@@ -94,7 +94,10 @@
 	</head>
 
 	<body>
-		<h5>预约课程</h5>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">付费课程</h1>
+		</header>
 		
 		<div class="mui-card">
 				<div id="class-img" class="mui-card-header mui-card-media" style="height:45vw;background-image:url(images/muwu.jpg)"></div>
@@ -160,7 +163,7 @@
 			$.ajax({
 				type: "get",
 				url: "/front/getsession",
-				async: true,
+				async: false,
 				dataType: "json",
 				success: function(data) {
 					session = data;
@@ -172,19 +175,19 @@
 			$.ajax({
 				type:"get",
 				url:"/front/findLessonById",
-				async:true,
+				async:false,
 				data:{"lid":lid,"branchid":branchid},
 				dataType:"json",
 				success:function(data){
 					console.log(data)
-					$("#class-img").attr("style","height:45vw;background-image:url(../upload/"+data.lesson.imgurl+")")
+					$("#class-img").attr("style","height:45vw;background-image:url("+data.lesson.imgurl+")")
 					$("#class-date").text(new Date(parseInt(data.lesson.pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '))
 					$("#class-name").text(data.lesson.lname)
 					$("#class-price").text("¥"+data.lesson.lprice)
-					if (cid == ""|| cid == null) {
+					if (cid == undefined) {
 						console.log(cid)
 //						$("#youhui").html('<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>');	
-
+						cid = 0
 						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">未使用优惠券</span>');
 					} else{
 						console.log(cid)

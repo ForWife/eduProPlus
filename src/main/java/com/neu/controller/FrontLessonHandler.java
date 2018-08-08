@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neu.beans.FreeListen;
 import com.neu.beans.Lesson;
 import com.neu.po.AddressandLesson;
 import com.neu.po.FreeListenByAddress;
@@ -77,6 +78,13 @@ public class FrontLessonHandler {
 	@ResponseBody
 	public List<FreeListenByType> findFreelistenByType(int qid) throws Exception{
 		return lessonService.findFreelistenByType(qid);
+	}
+	
+	@RequestMapping(value="/front/findFreeListenById")
+	@ResponseBody
+	public FreeListen findFreeListenById(int fid) throws Exception {
+		System.out.println("FrontLessonHandler.findFreeListenById()");
+		return lessonService.findFreeListenById(fid);
 	}
 }
 

@@ -100,7 +100,7 @@
 					<a  style="float:right;" id="more_freelisten">更多</a>
 				</div>
 
-				<div id="freelisten1Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/cbd.jpg)">
+				<div id="freelisten1Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url()">
 				</div>
 
 				<div class="mui-card-content">
@@ -111,7 +111,7 @@
 				</div>
 
 				<hr>
-				<div id="freelisten2Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/cbd.jpg)">
+				<div id="freelisten2Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url()">
 				</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
@@ -125,7 +125,7 @@
 				<div class="mui-card-header">付费课
 					<a href="#" style="float:right;" id="more_lesson">更多</a>
 				</div>
-				<div id="lesson1Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/cbd.jpg)">
+				<div id="lesson1Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url()">
 				</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
@@ -134,7 +134,7 @@
 					</div>
 				</div>
 				<hr>
-				<div id="lesson2Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/cbd.jpg)">
+				<div id="lesson2Img" class="mui-card-header mui-card-media" style="height:40vw;background-image:url()">
 				</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
@@ -170,8 +170,8 @@
 		$("#lesson2_time").text("发布时间："+new Date(parseInt(data[1].pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '));
 		console.log(data[0])
 		console.log(data[1].imgurl);
-		$("#lesson1Img").attr("style","height:40vw;background-image:url(../upload/"+data[0].imgurl+")");
-		$("#lesson2Img").attr("style","height:40vw;background-image:url(../upload/"+data[1].imgurl+")");
+		$("#lesson1Img").attr("style","height:40vw;background-image:url("+data[0].imgurl+")");
+		$("#lesson2Img").attr("style","height:40vw;background-image:url("+data[1].imgurl+")");
 		
 	}
 	$(function(){
@@ -190,8 +190,8 @@
 		$("#freelisten2_name").text(data[1].title);
 		$("#freelisten1_time").text("发布时间："+new Date(parseInt(data[0].pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '));
 		$("#freelisten2_time").text("发布时间："+new Date(parseInt(data[1].pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '));
-		$("#freelisten1Img").attr("style","height:40vw;background-image:url(../upload/"+data[0].imgurl+")");
-		$("#freelisten2Img").attr("style","height:40vw;background-image:url(../upload/"+data[1].imgurl+")");
+		$("#freelisten1Img").attr("style","height:40vw;background-image:url("+data[0].imgurl+")");
+		$("#freelisten2Img").attr("style","height:40vw;background-image:url("+data[1].imgurl+")");
 	}
 		
 	$(function(){

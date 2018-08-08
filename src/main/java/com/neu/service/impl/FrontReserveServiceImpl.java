@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+import com.neu.beans.FreeListenBook;
 import com.neu.mapper.FrontReserveMapper;
 import com.neu.po.FreeListenVO;
 import com.neu.service.FrontReserveService;
@@ -53,6 +54,14 @@ public class FrontReserveServiceImpl implements FrontReserveService {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	@Transactional
+	public int addReserve(FreeListenBook freelistenbook) throws Exception {
+		System.out.println("FrontReserveServiceImpl.addReserve()");
+		
+		return mapper.addReserve(freelistenbook);
 	}
 
 }

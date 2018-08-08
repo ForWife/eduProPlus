@@ -7,10 +7,10 @@
 	SELECT * FROM swiper WHERE qid = #{qid}
 </select>
 <select id="getnewTwoLesson" parameterType="int" resultType="com.neu.beans.Lesson">
-	SELECT * FROM lesson where qid = #{qid} ORDER BY pubtime DESC LIMIT 0,2 
+	SELECT * FROM lesson where qid = #{qid} and `status`= '进行中' ORDER BY pubtime DESC LIMIT 0,2 
 </select>
 <select id="getNewTwoFreeListen" parameterType="int" resultType="com.neu.beans.FreeListen">
-	SELECT * FROM freelisten where qid = #{qid} ORDER BY pubtime DESC LIMIT 0,2 
+	SELECT * FROM freelisten where qid = #{qid} and `status`= '进行中' ORDER BY pubtime DESC LIMIT 0,2 
 </select>
 	
 </mapper>

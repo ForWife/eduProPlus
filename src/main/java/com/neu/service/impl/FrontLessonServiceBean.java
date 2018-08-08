@@ -90,6 +90,12 @@ public class FrontLessonServiceBean implements FrontLessonService {
 		
 		return null;
 	}
+
+	@Override
+	public FreeListen findFreeListenById(int fid) throws Exception {
+		System.out.println("FrontLessonServiceBean.findFreeListenById()");
+		return lessonMapper.findFreelistenById(fid);
+	}
 	
 	
 	

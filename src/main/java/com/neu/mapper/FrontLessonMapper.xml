@@ -28,9 +28,12 @@
     
    
     <select id="getFreeListenListByAddress" resultType="com.neu.beans.FreeListen" parameterType="int">
-    	SELECT * FROM freelisten WHERE branchid = #{branchid}
+    	SELECT * FROM freelisten WHERE branchid = #{branchid} and `status`= '进行中'
     </select>
     
+    <select id="findFreelistenById" resultType="com.neu.beans.FreeListen" parameterType="int">
+    	SELECT * FROM freelisten WHERE id = #{fid} and `status`= '进行中'
+    </select>
     
     
 </mapper>

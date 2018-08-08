@@ -20,7 +20,25 @@
 	</head>
 
 	<body>
-		<h5>免费课程预约</h5>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">试听课</h1>
+		</header>
+		
+		
+		<div class="mui-card">
+				<div id="class-img" class="mui-card-header mui-card-media" style="height:45vw;background-image:url()"></div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<p id="class-date">Posted on January 18, 2016</p>
+						<p id="class-name" style="color: #333;"></p>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<!--<a  class="mui-card-link">Like</a>-->
+					<label id="class-price" class="mui-card-link">Read more</label>
+				</div>
+			</div>
 		<form class="mui-card" style="border-radius: 10px;" action='#' method="post" name="Form">
 			<div class="mui-input-row" style="margin:2px 2px;border: 1px solid #C0C0C0;border-radius:10px">
 				<label style="width: 120px;">姓名：</label>
@@ -35,16 +53,28 @@
 			</div>
 
 			<div class="mui-input-row" style="margin: 5px 2px;">
-				<textarea id="textarea" style="margin-bottom: 0px;" rows="5" placeholder="输入必要备注"></textarea>
+				<textarea id="comment" style="margin-bottom: 0px;" rows="5" placeholder="输入必要备注"></textarea>
 			</div>
-			<div class="mui-button-row">
-				<button id="submit-order" type="submit" class="mui-btn mui-btn-danger" style="margin-bottom: 5px; " id='btn' >预约</button>
-			</div>
+			
 		</form>
+		<button id="submit-book" type="button" class="mui-btn mui-btn-danger mui-btn-block">预约</button>
 
 	</body>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="js/mui.js" ></script>
 	<script>
+		var session
+		function timestampToTime(timestamp) {
+		console.log(timestamp)
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D;
+    }
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -59,43 +89,63 @@
 		}
 		var request = new Object();
 		request = GetRequest();
-		var lid = request["lid"];
-		var branchid = request["branchid"];
+		var fid = request["fid"];
+
 
 		$(function() {
-			
+			$.ajax({
+				type: "get",
+				url: "/front/getsession",
+				async: false,
+				dataType: "json",
+				success: function(data) {
+					session = data;
+					console.log(session);
+					$("#tel").val(session.tel);
+					$("#nickname").val(session.uname);
+				}
+			});
 			$.ajax({
 				type:"get",
-				url:"",
-				async:true
+				url:"/front/findFreeListenById",
+				async:true,
+				dataType:"json",
+				data:{"fid":fid},
+				success:function(data){
+					console.log(data)
+					$("#class-img").attr("style","height:45vw;background-image:url("+data.imgurl+")")
+					$("#class-date").text(timestampToTime(data.pubtime))
+					$("#class-name").text(data.title)
+				}
 			});
-			$("#submit-order").click(function(){
+			
+		});
+		$("#submit-book").click(function(){
 				var nickname = $("#nickname").val();
 				var tel = $("#tel").val();
+				var comment = $("#comment").val();
 				console.log(tel)
 				console.log(nickname)
 				$.ajax({
 					type: "get",
-					url: "/front/addOrder",
+					url: "/front/addReserve",
 					async: false,
 					data: {
-						lid: lid,
-						branchid: branchid,
-						nickname: nickname,
-						tel: tel
+						'fid': fid,
+						'username': nickname,
+						'tel': tel,
+						'comment':comment,
+						'openid':session.openid
 					},
 					dataType:"json",
 					success:function(data){
 						/* console.log("成功"); */
 						console.log(data)
-						mui.openWindow({
-							url: "my-order.html"
-					});
+						mui.openWindow("my-reserve.html");
 					}
 				});
 				
 			});
-		});
 		
 		
 		function successfun(data){

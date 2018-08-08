@@ -57,7 +57,7 @@ public class BackTrialHandler {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         freeListen.setQid(user.getQid());
-        freeListen.setStatus("???");
+        freeListen.setStatus("进行中");
         freeListen.setPubtime(new Date());
         if (trialService.addTrial(freeListen)) {
             return "{\"result\":\"success\"}";

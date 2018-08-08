@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neu.beans.FreeListenBook;
 import com.neu.po.FreeListenVO;
 import com.neu.service.FrontReserveService;
 
@@ -40,5 +41,17 @@ public class FrontReserveHandler
 		  System.out.println("....servlet....findreserveing()......");
 		  return frontreserverService.findReserveing(userid);
       }
+	  
+	  @RequestMapping(value="/front/addReserve")
+	  @ResponseBody
+	  public String addReserve(FreeListenBook freelistenbook) throws Exception{
+		  System.out.println("FrontReserveHandler.addReserve()");
+		  int count = frontreserverService.addReserve(freelistenbook);
+		  if (count>0) {
+			return "{\"result\":\"ok\"}";
+		}else{
+			return "{\"result\":\"=failed\"}";
+		}
+	  }
 	  
 }

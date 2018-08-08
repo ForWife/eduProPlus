@@ -26,9 +26,6 @@
 	    				card += '<a href = "javascript:deleteMessage('+data[i].mid+','+data[i].messageImg.length+','+data[i].messageLike.length+','+data[i].messageReply.length+')">';
 	    				card += '<span class="layui-icon layui-icon-delete" style="float: right; margin-right: 10px;"></span>';
 	    				card += '</a>';
-	    				card += '<a href = "javascript:editMessage('+data[i].mid+')">';
-	    				card += '<span class="layui-icon layui-icon-edit" style="float: right;margin-right: 13px;"></span>';
-	    				card += '</a>';
 	    				card += '</div>';
 	    				card += '<div class="timeStyle">';
 	    				card += '<span class="wordStyle">Posted on '+new Date(parseInt(data[i].mtime)).toLocaleString().replace(/:\d{1,2}$/,' ')+'</span>';
@@ -111,21 +108,19 @@
 	   	}
 	   	
 	   	function deleteMessage(mid, imgNumber, likeNumber,replyNumber){
-	   		alert(mid);
-	   		$.ajax({
-	   			url: "/back/deleteMessage",
-	   			data: {"mid" : mid,
-	   				   "imgNumber" : imgNumber,
-	   				   "likeNumber" : likeNumber,
-	   				   "replyNumber" : replyNumber},
-	   			type: "get",
-	   			success:function(){
-	   				loading();
-	   			}
-	   		})
-	   	}
-	   	function editMessage(id){
-	   		
+	   		if(confirm("确定删除该条朋友圈么？")){
+	   			$.ajax({
+		   			url: "/back/deleteMessage",
+		   			data: {"mid" : mid,
+		   				   "imgNumber" : imgNumber,
+		   				   "likeNumber" : likeNumber,
+		   				   "replyNumber" : replyNumber},
+		   			type: "get",
+		   			success:function(){
+		   				loading();
+		   			}
+		   		})
+	   		}
 	   	}
 	</script> 
     <script>
@@ -251,10 +246,24 @@
             	processData: false,
             	contentType: false, 
             	success:function(data){
-            		location.reload();
+            		document.getElementById("partChoose").value = "";
+       	   			document.getElementById("areaJs").value = "";
+       	   			fileListAll = [];
+       	   			$("#pic").html("");
+       	   			document.getElementById("hideDiv1").style.display = "none";
+            		loading();
             	}
             })
 	   	}
+   		function deleteNewMessage(){
+   			if(confirm("确定放弃该条朋友圈的编辑么？")){
+   				document.getElementById("partChoose").value = "";
+   	   			document.getElementById("areaJs").value = "";
+   	   			fileListAll = [];
+   	   			$("#pic").html("");
+   	   			document.getElementById("hideDiv1").style.display = "none";
+   			}
+   		}
     </script>
     <style>
         .timeStyle {
@@ -392,7 +401,7 @@
 						<a class="layui-icon layui-icon-release" style="float:right; margin:0 10px" href = "javascript:sendMessage()"></a>
 					</span>
             <span>
-						<a class="layui-icon layui-icon-delete" style="float:right;margin:0 10px" href="#"></a>
+						<a class="layui-icon layui-icon-delete" style="float:right;margin:0 10px" href="javascript:deleteNewMessage()"></a>
 					</span>
 		
         </div>

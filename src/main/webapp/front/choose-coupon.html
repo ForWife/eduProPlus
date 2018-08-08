@@ -82,8 +82,12 @@
 	</head>
 
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">选择优惠券</h1>
+		</header>
 		<div id="coupon-list">
-			<div class="stamp stamp01">
+			<!--<div class="stamp stamp01">
 				<div class="par">
 					<p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
 					<p>订单满100.00元</p>
@@ -100,7 +104,7 @@
 				<a class="copy">使用
 					<p>2015-08-13<br>2016-08-13</p>
 				</a><i></i>
-			</div>
+			</div>-->
 		</div>
 	</body>
 	<script src="js/mui.min.js"></script>
@@ -126,6 +130,19 @@
 		var lid = request["lid"];
 		var branchid = request["branchid"];
 
+		function timestampToTime(timestamp) {
+		console.log(timestamp)
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D;
+    }
+
+
 		$(function() {
 			$.ajax({
 				type: "get",
@@ -141,6 +158,7 @@
 				type: "get",
 				url: "/front/findCoupon",
 				async: true,
+				dataType: "json",
 				data: {
 					"lid": lid,
 					"openid": session.openid
@@ -151,12 +169,12 @@
 						var card = '<div class="stamp stamp02">' +
 							'	<div class="par">' +
 							'	<p>课程类型'+data[i].category+'</p>'
-							if (data.money>0) {
+							if (data[i].money>0) {
 								card+='		<sub class="sign">打折</sub><span>'+data[i].money*100+'%</span><sub>优惠券</sub>' +
 							'	<p>订单满'+data[i].full+'元</p>' +
 							'	</div>' +
 							'	<a style="text-decoration:none" class="copy"  href="javascript:use(' + data[i].cid + ')">使用' +
-							'		<p>2015-08-13<br>2016-08-13</p>' +
+							'		<p>'+timestampToTime(data[i].deadline)+'<br></p>' +
 							'	</a><i></i>' +
 							'</div>'
 							} else{
@@ -165,10 +183,12 @@
 							'	<p>订单满'+data[i].full+'元</p>' +
 							'	</div>' +
 							'	<a style="text-decoration:none" class="copy"  href="javascript:use(' + data[i].cid + ')">使用' +
-							'		<p>2015-08-13<br>2016-08-13</p>' +
+							'		<p>'+timestampToTime(data[i].deadline)+'<br></p>' +
 							'	</a><i></i>' +
 							'</div>'
 							}
+							console.log(data[i].deadline)
+							console.log(timestampToTime(data[i].deadline))
 						$("#coupon-list").append(card);
 					}
 				}

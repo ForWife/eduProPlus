@@ -22,5 +22,10 @@
     	
     </insert>
 	
+	<update id="changename" >
+	
+	update userlist set uname=#{param1} where tel=#{param2} 
+	
+	</update>
 
 </mapper>

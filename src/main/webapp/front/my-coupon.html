@@ -2,11 +2,279 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我的优惠券卡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script src="js/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/mycoupon.css">
+<title>优惠券卡</title>
+<script type="text/javascript">
+$(function(){
+	 	  
+	var phone="";
+    $.ajax({
+		   url:"/front/getsession",
+		   async:false,
+		   success:function(data)
+		   {
+			  phone=data.tel;
+		   }	
+	   })
+//----------------------------------------	java  ------------------------- 
+	 $.ajax({
+		   url:"/front/getjavacoupon",
+		   data:{"openid":phone},
+		   success:function(data)
+		   {
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {				
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].coupon.full;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].coupon.money*10;
+					   var card="<div class='stamp stamp01'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].coupon.category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback1").append(card);	
+					   }
+				   else
+					   {					   
+					   var jian=data[i].coupon.money*(-1);
+					   var card="<div class='stamp stamp02'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].coupon.full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].coupon.category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback1").append(card);					   					  				
+					   }		   
+			   }
+		   }	
+	   })
+//----------------------------------------	c++  ------------------------- 	   
+	   $.ajax({
+		   url:"/front/getccoupon",
+		   data:{"openid":phone},
+		   success:function(data)
+		   {
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {				
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].coupon.full;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].coupon.money*10;
+					   var card="<div class='stamp stamp01'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].coupon.category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback2").append(card);	
+					   }
+				   else
+					   {					   
+					   var jian=data[i].coupon.money*(-1);
+					   var card="<div class='stamp stamp02'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].coupon.full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].coupon.category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback2").append(card);					   					  				
+					   }		   
+			   }
+		   }	
+	   })
+//----------------------------------------	golang  ------------------------- 	   
+	   $.ajax({
+		   url:"/front/getgocoupon",
+		   data:{"openid":phone},
+		   success:function(data)
+		   {
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {				
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].coupon.full;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].coupon.money*10;
+					   var card="<div class='stamp stamp01'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].coupon.category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback3").append(card);	
+					   }
+				   else
+					   {					   
+					   var jian=data[i].coupon.money*(-1);
+					   var card="<div class='stamp stamp02'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].coupon.full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].coupon.category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback3").append(card);					   					  				
+					   }		   
+			   }
+		   }	
+	   })
+//----------------------------------------python	  ------------------------- 	   
+	   $.ajax({
+		   url:"/front/getpythoncoupon",
+		   data:{"openid":phone},
+		   success:function(data)
+		   {
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {				
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].coupon.full;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].coupon.money*10;
+					   var card="<div class='stamp stamp01'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].coupon.category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback4").append(card);	
+					   }
+				   else
+					   {					   
+					   var jian=data[i].coupon.money*(-1);
+					   var card="<div class='stamp stamp02'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].coupon.full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].coupon.category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback4").append(card);					   					  				
+					   }		   
+			   }
+		   }	
+	   })
+//----------------------------------------	html5  ------------------------- 	
+	    $.ajax({
+		   url:"/front/gethtmlcoupon",
+		   data:{"openid":phone},
+		   success:function(data)
+		   {
+		
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {			
+				   
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].coupon.full;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].coupon.money*10;
+					   var card="<div class='stamp stamp01'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].coupon.category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback5").append(card);	
+					   }
+				   else
+					   {					   
+					   var jian=data[i].coupon.money*(-1);
+					   var card="<div class='stamp stamp02'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].coupon.full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].coupon.category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'>副券";
+					   card=card+"<p>"+timestampToTime(data[i].couponRecord.gettime)+"<br>"+timestampToTime(data[i].coupon.deadline)+"</p>";
+					   card=card+"</div><i></i></div>";											
+					   $("#orderback5").append(card);					   					  				
+					   }		   
+			   }
+		   }	
+	   })
+function timestampToTime(timestamp) {
+		console.log(timestamp)
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D;
+    }	   
+	   
+	   
+})
+</script>
+
 </head>
 <body>
+	<header class="mui-bar mui-bar-nav">
+			<a class=" mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">优惠券卡</h1>
+	</header>
+	
+	<div class="mui-content">
+			
+			
+			<div id="slider" class="mui-slider"  >
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" >
+					<a class="mui-control-item" href="#item1mobile">
+				java优惠卷
+			</a>
+					<a class="mui-control-item" href="#item2mobile">
+				c++优惠卷
+			</a>
+					<a class="mui-control-item" href="#item3mobile">
+				golang优惠卷
+			</a>
+			        <a class="mui-control-item" href="#item4mobile">
+				python优惠卷
+			</a>
+			        <a class="mui-control-item" href="#item5mobile">
+				html5优惠卷
+			</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="width:20% "></div>
+				<div class="mui-slider-group" style=" background-color: #efeff4;" >
+					
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback1">
+</div>
+					</div>
+					
+					<div id="item2mobile" class="mui-slider-item mui-control-content" style="background-color: #efeff4; border: 0px;">
+						
+<div class="orderback" id="orderback2">
+	
+</div>
 
-
+					</div>
+					
+					<div id="item3mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback3">
+</div>
+                    </div>
+                    <div id="item4mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback4">
+</div>
+                    </div>
+                    <div id="item5mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback5">
+</div>
+                    </div>
+				</div>
+			</div>		
+	</div>
+		
+<script src="js/mui.min.js"></script>
+<script>
+	function back(){
+		mui.openWindow("index.html")
+	}
+</script>
 
 
 </body>

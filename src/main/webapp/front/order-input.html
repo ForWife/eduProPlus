@@ -95,7 +95,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<a class=" mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
 			<h1 class="mui-title">付费课程</h1>
 		</header>
 		
@@ -108,8 +108,8 @@
 					</div>
 				</div>
 				<div class="mui-card-footer">
-					<!--<a  class="mui-card-link">Like</a>-->
-					<label id="class-price" class="mui-card-link">Read more</label>
+					<label id="class-total"  class="mui-card-link" style="text-decoration: line-through; text-decoration-line: line-through; text-decoration-style: initial; text-decoration-color: initial;display: none;">￥99.00</label>
+					<label id="class-price" class="mui-card-link">￥434.9</label>
 				</div>
 			</div>
 		
@@ -140,7 +140,11 @@
 	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script>
+		function back(){
+			mui.openWindow("index.html")
+		}
 		var session;
+		var lesson;
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串 
 			var theRequest = new Object();
@@ -183,15 +187,15 @@
 					$("#class-img").attr("style","height:45vw;background-image:url("+data.lesson.imgurl+")")
 					$("#class-date").text(new Date(parseInt(data.lesson.pubtime)).toLocaleString().replace(/:\d{1,2}$/,' '))
 					$("#class-name").text(data.lesson.lname)
-					$("#class-price").text("¥"+data.lesson.lprice)
+					lesson = data
 					if (cid == undefined) {
 						console.log(cid)
-//						$("#youhui").html('<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>');	
+//						$("#youhui").html('<span class="coupon" style="float: right; margin-right: 50px;">券<b><i>￥</i>10</b></span>');
+						$("#class-price").text("¥"+data.lesson.lprice)
 						cid = 0
 						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">未使用优惠券</span>');
 					} else{
 						console.log(cid)
-						console.log("+-+_+_+_+_+")
 						useCoupon(cid)
 						
 					}
@@ -209,12 +213,29 @@
 				dataType:"json",
 				success:function(data){
 					console.log(data)
+					$("#class-total").show()
+					$("#class-total").text("￥"+lesson.lesson.lprice)
 					if (data.money>0) {
-						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">打折'+data.money*100+'%</span>');	
+						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">打折'+data.money*100+'%</span>');
+						var m = lesson.lesson.lprice*data.money
+						console.log("===========")
+						console.log(lesson.lesson.lprice)
+						console.log(data.money)
+						console.log(m)
+						$("#class-price").text("￥"+m)
+						
 					} else{
-						var money = -data.money;
+						
+						var money = -1*data.money;
+						
 						console.log(money)
 						$("#youhui").html('优惠<span class="coupon" style="float: right; margin-right: 50px;">满'+data.full+'减'+money+'</span>');	
+						var m = lesson.lesson.lprice+data.money
+						console.log("=__-===")
+						console.log(lesson.lesson.lprice)
+						console.log(money)
+						console.log(m)
+						$("#class-price").text("￥"+m)
 					}
 					
 				}

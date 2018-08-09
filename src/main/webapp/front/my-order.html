@@ -63,7 +63,7 @@
     					   card+='<span class="time_p">'+(new Date(cardobject.lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
     					   card+='开课地点:'+cardobject.address.address+'<br/>';
     					   card+='联系电话:'+cardobject.address.tel+'<br/></div>';
-    					   card+='<div class="ordercard_price">￥'+cardobject.lesson.lprice+'</div> </div>';
+    					   card+='<div class="ordercard_price">￥'+cardobject.sorder.actual+'</div> </div>';
     					   card+='<div class="ordercard_down">';
     					   card+="<div class='orderbuttonpay'><button type='button' onclick='cancel("+object+")'>退款</button> </div>";					  				  
     					   card+='</div>';
@@ -104,7 +104,7 @@
     					   card+='<span class="time_p">'+(new Date(cardobject.lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
     					   card+='开课地点:'+cardobject.address.address+'<br/>';
     					   card+='联系电话:'+cardobject.address.tel+'<br/></div>';
-    					   card+='<div class="ordercard_price">￥'+cardobject.lesson.lprice+'</div> </div>';
+    					   card+='<div class="ordercard_price">￥'+cardobject.sorder.actual+'</div> </div>';
     					   card+='<div class="ordercard_down">';				   
     					   card+='</div>';
     					   $("#paied"+cardobject.sorder.oid).remove();
@@ -166,7 +166,7 @@
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
 				   card+='联系电话:'+data[i].address.tel+'<br/></div>';
-				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
+				   card+='<div class="ordercard_price">￥'+data[i].sorder.actual+'</div> </div>';
 				   card+='<div class="ordercard_down">';
 				   switch(data[i].sorder.status)
 				   {
@@ -208,7 +208,7 @@
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
 				   card+='联系电话:'+data[i].address.tel+'<br/></div>';
-				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
+				   card+='<div class="ordercard_price">￥'+data[i].sorder.actual+'</div> </div>';
 				   card+='<div class="ordercard_down">';			  
 				   card+=" <div class='orderbutton'><button type='button' onclick='deleteorder("+data[i].sorder.oid+")'>取消</button></div><div class='orderbuttonpay'><button type='button' onclick='pay("+cardobject+")'>付款</button></div>"; 
 				   card+='</div>';                        
@@ -234,7 +234,7 @@
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
 				   card+='联系电话:'+data[i].address.tel+'<br/></div>';
-				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
+				   card+='<div class="ordercard_price">￥'+data[i].sorder.actual+'</div> </div>';
 				   card+='<div class="ordercard_down">';				  
 				   card+="<div class='orderbuttonpay'><button type='button' onclick='cancel("+cardobject+")'>退款</button> </div>";				  
 				   card+='</div>';
@@ -259,7 +259,7 @@
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
 				   card+='联系电话:'+data[i].address.tel+'<br/></div>';
-				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
+				   card+='<div class="ordercard_price">￥'+data[i].sorder.actual+'</div> </div>';
 				   card+='<div class="ordercard_down">';				
 				   card+='</div>';
 			       $("#orderback4").append(card);				   
@@ -291,7 +291,7 @@
 				   card+='<span class="time_p">'+(new Date(data[i].lesson.pubtime)).Format("yyyy-MM-dd hh:mm:ss")+'开课</span><br/>';
 				   card+='开课地点:'+data[i].address.address+'<br/>';
 				   card+='联系电话:'+data[i].address.tel+'<br/></div>';
-				   card+='<div class="ordercard_price">￥'+data[i].lesson.lprice+'</div> </div>';
+				   card+='<div class="ordercard_price">￥'+data[i].sorder.lprice+'</div> </div>';
 				   card+='<div class="ordercard_down">';				   
 				   card+='</div>';
 			       $("#orderback5").append(card);				   

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script src="js/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/mycoupon.css">
+<title>优惠券兑换中心</title>
+<script type="text/javascript">
+
+function getcouponf(cid)
+{
+	 $.ajax({
+		   url:"/front/getacoupon",
+		   data:{"cid":cid,"openid":openid},
+		   dataType:"text",
+		   success:function(data)
+		   {
+			   if(data=='1')
+			   {
+				   mui.toast('你已经拥有这个优惠券了！'); 
+				  
+			   }
+		   else
+			   {
+			   if(data=='2')
+				   {
+				   mui.toast('你的积分不够啊！'); 
+				   }
+			   else
+				   {
+				   
+				   doAjax();
+				   mui.toast('兑换成功！'); 
+				   }
+			   }
+			  
+		   }
+	 })
+	
+	
+}
+
+function doAjax(){
+    $.ajax({
+		   url:"/front/getsession",
+		   async:false,
+		   success:function(data)
+		   {
+			openid=data.tel;
+		   }	
+      })
+      
+       $.ajax({
+		   url:"/front/getallcoupon",
+		   success:function(data)
+		   {
+			   console.log(data);
+			   for(var i=0; i<data.length;i++)
+			   {
+				   
+				    var cid=data[i].cid;
+				    $("#"+data[i].cid).remove();
+				   //1.判断是折扣还是优惠 采用不同的样式
+				   var flag=data[i].full;
+				   var left=data[i].total-data[i].get;
+				   if(flag==-1)
+					   {
+					   var zhekou=data[i].money*10;
+					   var card="<div class='stamp stamp01' id='"+data[i].cid+"'> <div class='par'><p>东软睿道培训中心折扣卷</p>";
+					   card=card+"<span>"+zhekou+"</span><sub class='sign'>折</sub><sub>减免</sub>	<p>"+data[i].category+"课程折扣卷</p></div>";
+					   card=card+"<div class='copy'style='padding-top:0px'>";
+					   card=card+"<p>剩余"+left+"张<br>"+timestampToTime(data[i].deadline)+"<br>需要"+data[i].score+"积分</p>";
+					   card=card+"<button type='button' onclick='getcouponf("+cid+")'>兑换</button>";
+					   card=card+"</div><i></i></div>";	
+					   switch(data[i].category)
+					   {
+					   case "JAVA"	:				  
+						   $("#orderback1").append(card);	
+						   break;
+					   case "C++":
+						   $("#orderback2").append(card);	
+						   break;
+					   case "Golang":
+						   $("#orderback3").append(card);	
+						   break;			   
+					   case "Python":
+						   $("#orderback4").append(card);	
+						   break;
+					   case "HTML5":
+						   $("#orderback5").append(card);	
+						   break;
+					   }					   
+					   }
+				   else
+					   {					   
+					   var jian=data[i].money*(-1);
+					   var card="<div class='stamp stamp02' id='"+data[i].cid+"'> <div class='par'><p>东软睿道培训中心满减券</p>";
+					   card=card+"<sub>满"+data[i].full+"元减</sub><sub class='sign'>￥</sub><span>"+jian+"</span><p>"+data[i].category+"课程满减卷</p></div>";
+					   card=card+"<div class='copy'style='padding-top:0px'>";
+					   card=card+"<p>剩余"+left+"张<br>"+timestampToTime(data[i].deadline)+"<br>需要"+data[i].score+"积分</p>";
+					   card=card+"<button type='button' onclick='getcouponf("+cid+")'>兑换</button>";
+					   card=card+"</div><i></i></div>";	
+					   
+					   switch(data[i].category)
+					   {
+					   case "JAVA"	:				  
+						   $("#orderback1").append(card);	
+						   break;
+					   case "C++":
+						   $("#orderback2").append(card);	
+						   break;
+					   case "Golang":
+						   $("#orderback3").append(card);	
+						   break;			   
+					   case "Python":
+						   $("#orderback4").append(card);	
+						   break;
+					   case "HTML5":
+						   $("#orderback5").append(card);	
+						   break;
+					   }					   					  				
+					   }		   
+			   }
+		   }
+	 
+	       })
+	}
+
+function timestampToTime(timestamp) {
+		console.log(timestamp)
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D;
+    }
+
+var openid;
+$(function(){
+	doAjax();	   
+})
+</script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">兑换优惠券卡</h1>
+	</header>
+	
+	<div class="mui-content">
+			
+			
+			<div id="slider" class="mui-slider"  >
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" >
+					<a class="mui-control-item" href="#item1mobile">
+				java优惠卷
+			</a>
+					<a class="mui-control-item" href="#item2mobile">
+				c++优惠卷
+			</a>
+					<a class="mui-control-item" href="#item3mobile">
+				golang优惠卷
+			</a>
+			        <a class="mui-control-item" href="#item4mobile">
+				python优惠卷
+			</a>
+			        <a class="mui-control-item" href="#item5mobile">
+				html5优惠卷
+			</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="width:20% "></div>
+				<div class="mui-slider-group" style=" background-color: #efeff4;" >
+					
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback1">
+</div>
+					</div>
+					
+					<div id="item2mobile" class="mui-slider-item mui-control-content" style="background-color: #efeff4; border: 0px;">
+						
+<div class="orderback" id="orderback2">
+	
+</div>
+
+					</div>
+					
+					<div id="item3mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback3">
+</div>
+                    </div>
+                    <div id="item4mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback4">
+</div>
+                    </div>
+                    <div id="item5mobile" class="mui-slider-item mui-control-content" style="background-color:#efeff4; border: 0px;">
+						<div class="orderback" id="orderback5">
+</div>
+                    </div>
+				</div>
+			</div>		
+	</div>
+		
+<script src="js/mui.min.js"></script>
+<script>
+	function back(){
+		mui.openWindow("index.html")
+	}
+</script>
+</body>
+</html>

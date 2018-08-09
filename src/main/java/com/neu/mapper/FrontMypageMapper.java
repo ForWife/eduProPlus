@@ -7,4 +7,6 @@ public interface FrontMypageMapper {
 
 	void addrecord(int uid,String time);
 
+	void changename(String name, String phone);
+
 }

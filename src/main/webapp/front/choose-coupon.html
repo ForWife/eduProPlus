@@ -171,15 +171,14 @@
 							'	<p>课程类型'+data[i].category+'</p>'
 							if (data[i].money>0) {
 								card+='		<sub class="sign">打折</sub><span>'+data[i].money*100+'%</span><sub>优惠券</sub>' +
-							'	<p>订单满'+data[i].full+'元</p>' +
 							'	</div>' +
 							'	<a style="text-decoration:none" class="copy"  href="javascript:use(' + data[i].cid + ')">使用' +
 							'		<p>'+timestampToTime(data[i].deadline)+'<br></p>' +
 							'	</a><i></i>' +
 							'</div>'
 							} else{
-								var money = -data[i].money
-								card +='<sub class="sign">打折</sub><span>减'+money+'</span><sub>优惠券</sub>' +
+								var money = -1*data[i].money
+								card +='<sub class="sign">满减</sub><span>减'+money+'</span><sub>优惠券</sub>' +
 							'	<p>订单满'+data[i].full+'元</p>' +
 							'	</div>' +
 							'	<a style="text-decoration:none" class="copy"  href="javascript:use(' + data[i].cid + ')">使用' +

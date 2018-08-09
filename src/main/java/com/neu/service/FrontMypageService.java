@@ -9,5 +9,7 @@ public interface FrontMypageService {
 	void addscore(int uid);
 
 	void addrecord(int uid);
+	
+	void changename(String name, String phone);
 
 }

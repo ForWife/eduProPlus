@@ -59,4 +59,14 @@ public class FrontMypageServiceImpl implements FrontMypageService {
 		mapper.addrecord(uid,time);
 		
 	}
+
+
+
+
+
+	@Override
+	public void changename(String name,String phone) {
+		mapper.changename(name,phone);
+		
+	}
 }

@@ -233,7 +233,12 @@ public class FrontOrderServiceImpl implements FrontOrderService {
 			sorder.setActual(lesson.getLprice());
 		}else{
 			Coupon coupon = couponMapper.getCoupon(sorder.getCid());
-			sorder.setActual(sorder.getTotal()*coupon.getMoney());
+			if (coupon.getMoney()>0) {				
+				sorder.setActual(sorder.getTotal()*coupon.getMoney());
+			}else{
+				sorder.setActual(sorder.getTotal()+coupon.getMoney());
+			}
+			
 			Map<String, Object>map = new HashMap<>();
 			map.put("cid", sorder.getCid());
 			map.put("openid", sorder.getOpenid());

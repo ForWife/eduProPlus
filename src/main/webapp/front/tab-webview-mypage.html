@@ -9,7 +9,7 @@
 	
 		<link rel="stylesheet" type="text/css" href="css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="css/mypage.css">
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js"></script>
+        <script src="js/jquery-3.3.1.js"></script>
 
     <script>
     
@@ -52,7 +52,10 @@
  		 	   })
  	   	
     }
-
+    function backtobegin()
+    {
+    	mui.openWindow("fronttestlogin.html");
+    }
     </script>
 
 
@@ -123,17 +126,17 @@
 					</span>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+					<a class="mui-navigate-right" id="getcoupon" href="#">
 						兑换优惠券卡
 					</a>
 				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						修改个人信息
+				<li class="mui-table-view-cell" >
+					<a class="mui-navigate-right" id="changeinfo" href="#">
+						个人信息
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+					<a class="mui-navigate-right" href="javascript:backtobegin();">
 						退出账户
 					</a>
 				</li>
@@ -151,8 +154,7 @@
 			swipeBack:true //启用右滑关闭功能
 		});
 	</script>
-	<script>
-		mui('body').on('tap','a',function(){document.location.href=this.href;});
+	<script>	
 		mui.plusReady(function() {
 							document.getElementById("reserve").addEventListener("tap", function() {
 									mui.openWindow({
@@ -168,6 +170,16 @@
 								mui.openWindow({
 										url: "my-coupon.html"
 								});
+							});
+							document.getElementById("changeinfo").addEventListener("tap", function() {
+								mui.openWindow({
+											url: "changeinfo.html"
+									});
+						});
+							document.getElementById("getcoupon").addEventListener("tap", function() {
+								mui.openWindow({
+											url: "getcoupon.html"
+									});
 						});
 		})
 	</script>

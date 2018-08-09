@@ -10,10 +10,20 @@
 		SELECT * FROM coupon 
 		WHERE cid in (SELECT cid FROM couponrecord WHERE openid = #{openid}) 
 		and category = (SELECT category FROM lesson WHERE lid = #{lid})
-		 AND deadline &lt; NOW()
+		 AND deadline > NOW()
+		 AND full &lt; (SELECT lprice FROM lesson WHERE lid = #{lid})
 	</select>
 	<delete id="useCoupon">
 		DELETE FROM couponrecord WHERE cid =#{cid} and openid =#{openid} 
 	</delete>
 	
+	
+	
+	<select id="getRecordByOpenid" parameterType="String" resultType="com.neu.beans.CouponRecord">
+	select * from couponrecord where openid=#{openid} order by gettime desc
+	</select>
+
+    <select id="getCouponById" parameterType="int" resultType="com.neu.beans.Coupon">
+	select * from coupon where cid=#{cid} and deadline>Now()  
+	</select>
 </mapper>

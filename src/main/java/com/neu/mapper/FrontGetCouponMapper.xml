@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.neu.mapper.FrontGetCouponMapper">
+
+
+
+   <select id="getallcoupon"  resultType="com.neu.beans.Coupon">
+	select * from coupon where coupon.total>coupon.get and deadline>Now()   order by score
+	</select>
+	
+	 <select id="checkhave"  resultType="int">
+	select COUNT(*) from couponrecord where couponrecord.openid=#{param2} and couponrecord.cid=#{param1}
+	</select>
+	
+	 <select id="getscore1"  resultType="int" parameterType="int">
+	select coupon.score from coupon where coupon.cid=#{cid}
+	</select>
+	
+	 <select id="getscore2"  resultType="int" parameterType="String">
+	select userlist.score from userlist where userlist.openid=#{openid}
+	</select>
+	
+	<update id="update1" >
+	update userlist set score=score-#{param1} where openid=#{param2}
+	</update>
+	
+	<update id="update2" parameterType="int">
+	update coupon set coupon.get=coupon.get+1 where cid=#{cid}
+	</update>
+	
+	<insert id="insert">
+	insert into couponrecord  (cid,openid,gettime) values (#{param1},#{param2},Now())
+	</insert>
+	
+
+</mapper>

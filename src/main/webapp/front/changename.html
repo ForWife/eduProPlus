@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>更改昵称</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/changeinfo.css">
+<script src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+ $(function(){	 	
+    $.ajax({
+		   url:"/front/getsession",
+		   async:false,
+		   success:function(data)
+		   {		   
+			   var input="<input  type='text' id='name'  value='"+data.uname+"'/>";
+			   input=input+"<input type='hidden' id='phone' value='"+data.tel+"'/>";
+			    $("#changename1").append(input);
+			    
+		   }	
+	   })
+	   $("#changebtn").click(function(){
+			var name = $("#name").val();
+			var phone = $("#phone").val();
+		    $.ajax({
+				   url:"/front/changenamehandler",
+				   data:{"name":name,"phone":phone},				   
+				   success:function(data)
+				   {		   				  
+					   console.log('已修改名字！');
+					   mui.openWindow(data);
+				   }	
+			   })
+			   
+		});
+	   
+});
+ </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">更改昵称</h1>
+			<button class="change" id="changebtn">更改</button>	
+		</header>
+		
+		<div class="mui-content">		
+		<div class="mui-input-row mui-password" id="changename1">	
+		
+		</div>
+		</div>
+
+
+
+</body>
+<script src="js/mui.min.js"></script>
+</html>

@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+   .mui-table-view:before
+   {
+    height:0
+   }
+   .mui-table-view:after
+   {
+    height:0
+   }
+
+  .mui-navigate-right:after, .mui-push-right:after 
+  {
+    right: 15px;
+    content: none;
+    color: #000000;
+  }
+  .touxiang
+  {
+	float: left;
+	width: 50px;
+	margin-top: 30px;
+	
+  }
+  .user-pic
+  {
+  	float: right;
+  	height: 80px;
+  	width: 80px;
+  	overflow: hidden;
+  }
+  .user-pic img
+  {
+  	height: 80px;
+	width: auto;
+	overflow: hidden;
+	left: 50%;			
+	position: relative;	
+    -webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+  }
+  
+  .change
+  {
+   margin-top: 5px;
+   margin-right: 10px;
+   float: right;
+  }

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/mui.css" />
+    <link rel="stylesheet" href="css/mui.min.css" />
     <link rel="stylesheet" href="css/teacherlist.css">
     <link rel="stylesheet" href="css/icons-extra.css" />
      <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
@@ -38,7 +39,7 @@
 <body>
 
 <header class="mui-bar mui-bar-nav">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <a class=" mui-icon mui-icon-left-nav mui-pull-left" href="javascript:backhome()"></a>
     <h1 class="mui-title">师资力量</h1>
 </header>
 
@@ -51,11 +52,14 @@
 
 
 </body>
-<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js" ></script>
 <script>
     mui.init({
         swipeBack: true //启用右滑关闭功能
     });
+    function backhome(){
+    	mui.openWindow("index.html")
+    }
 </script>
 
 </html>

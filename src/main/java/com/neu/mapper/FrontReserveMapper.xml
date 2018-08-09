@@ -19,6 +19,6 @@
 	
 	<insert id="addReserve" parameterType="com.neu.beans.FreeListenBook">
 		INSERT INTO freelistenbook(fid,username,tel,booktime,status,comment,openid)
-		 VALUES(fid,#{username},#{tel},NOW(),'待处理',#{comment},#{openid})
+		 VALUES(#{fid},#{username},#{tel},NOW(),'待处理',#{comment},#{openid})
 	</insert>
 </mapper>

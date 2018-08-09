@@ -10,7 +10,7 @@
 		<script src="js/mui.min.js"></script>
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" href="css/company.css">
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js"></script>
+        <script type="text/javascript" src="js/jquery-3.3.1.js" ></script>
         <script>
     $(function(){ 	  
 	   $.ajax({
@@ -45,7 +45,7 @@
 	<body>
 		
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a>
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="javascript:backhome()" ></a>
 			<h1 class="mui-title">企业介绍</h1>
 		</header>
 		
@@ -74,9 +74,10 @@
 		</div>
 		
 	</body>
-	
-	<script src="js/mui.min.js"></script>
 	<script>
+		function backhome(){
+			mui.openWindow("index.html")
+		}
 		mui.init({
 			swipeBack:true //启用右滑关闭功能
 		});

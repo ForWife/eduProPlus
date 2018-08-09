@@ -130,56 +130,7 @@
 <body>
 
 <div class="mui-content" id="cardlist">
-    <div class="mui-card">
-        <div class="mui-card-content">
-            <div class="mui-card-content-inner">
-                包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
-
-            </div>
-            <div class="pictureStyle">
-                <ul>
-                    <li><img class="pwidth" src="images/1.jpg"></li>
-                    <li><img class="pheigh" src="images/3.jpg"></li>
-                    <li><img src=""></li>
-                    <li><img></li>
-                    <li><img></li>
-
-                </ul>
-            </div>
-
-            <p class="pStyle">
-            
-                <span>Posted on January 18, 2016</span>
-             	<!-- <span><a class="fRight iconSize mui-icon mui-icon-chatbubble" href = "javascript:display();"></a></span> -->
-             	<a type="button" data-id="3" class="fRight iconSize mui-icon mui-icon-chatbubble replybtn" ><span></span></a>
-                <span><a class="fRight iconSize mui-icon-extra mui-icon-extra-heart"></a></span>
-            </p>
-        </div>
-        
-        <div class="mui-card-content" style = "border-top: #d9d9d9 1px solid;">
-            <div style = "margin-left: 15px;">
-                <p>
-                    <span class="spanColor mui-icon-extra mui-icon-extra-heart-filled"></span>
-                    <span>小名</span>
-                </p>
-            </div>
-            
-            <div style = "margin-left: 15px;" >
-                1111:111111111111
-            </div>
-            
-            <div style = "margin-left: 19px;" id = "context">
-            		<textarea id="areaJs" style = "width: 90%;height:19px"></textarea>
-                    <script>
-                        /* var text = document.getElementById("areaJs");
-                        autoTextarea(text); */ // 调用
-                    </script>
-               	<a class = "mui-icon mui-icon-paperplane" style = "float: right; margin-right: 5px;"></a>
-            </div>
-            
-        </div>
-        
-    </div>
+    
    
  </div>
 
@@ -273,6 +224,8 @@ function like(mid){
 
 function showarea(mid){
 	$("#context"+mid).toggle();
+	$(".reply-more"+mid).toggle();
+	
 }
 function reply(mid){
 	console.log("reply")
@@ -290,7 +243,7 @@ function reply(mid){
 			if(data.result=="success"){
 				console.log("success");
 				$("#areaJs"+mid).val("");
-				var reply = '<div style = "margin-left: 15px;">'
+				var reply = '<div class="reply-more'+mid+'" style = "margin-left: 15px;">'
 								+session.uname+':'+content;
 							+'</div>';
 				$("#reply"+mid).append(reply);
@@ -355,10 +308,18 @@ function successfunction(data){
 		card += '</div>';
 		
 		card +='<div id = "reply'+data[i].message.mid+'">'
+		
 		for (var r = 0; r < data[i].messageReply.length; r++) {
-		card += '<div style = "margin-left: 15px;">';
-		card += data[i].messageReply[r].nickname+':'+data[i].messageReply[r].content;
-		card += '</div>';
+			if(r>1){
+				card += '<div class="reply-more'+data[i].message.mid+'" style = "margin-left: 15px;display: none">';
+				card += data[i].messageReply[r].nickname+':'+data[i].messageReply[r].content;
+				card += '</div>';
+			}else{
+				card += '<div style = "margin-left: 15px;">';
+				card += data[i].messageReply[r].nickname+':'+data[i].messageReply[r].content;
+				card += '</div>';
+			}
+		
 		}
 		card +='</div>'
 		

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改个人信息</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/changeinfo.css">
+<script src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(function(){	 	
+    $.ajax({
+		   url:"/front/getsession",
+		   async:false,
+		   success:function(data)
+		   {
+			   var pic="<img src='../upload/"+data.userimg+"'/>";			   
+			    $("#pic").append(pic);	
+			    $("#name").append(data.uname);	
+			    $("#phone").append(data.tel);	
+			    $("#score").append(data.score);	
+		   }	
+	   })   
+})
+
+</script>
+</head>
+<body>
+		<header class="mui-bar mui-bar-nav">			
+			<a class=" mui-icon mui-icon-left-nav mui-pull-left" href="javascript:back()"></a>
+			<h1 class="mui-title">个人信息</h1>
+		</header>
+		
+		<div class="mui-content">		
+		<ul class="mui-table-view" style="border-top: hidden;">
+				<li class="mui-table-view-cell" style="height: 100px;">
+					<a id="changepic">
+					<span class="touxiang">头像</span><div class="user-pic" id="pic"></div>				
+					</a>			
+				</li>
+				<li class="mui-table-view-cell"  >
+					<a class="mui-navigate-right" href="javascript:changename0();" >
+						昵称<span style="float: right;" id="name"></span>
+					</a>
+				
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="javascript:void(0);">
+						手机号<span style="float: right;" id="phone"></span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="javascript:void(0);">
+						签到积分<span style="float: right;" id="score"></span>
+					</a>
+				</li>
+			    </ul>
+	
+		</div>
+
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+	</script>
+	<script>
+	function changename0()
+	{
+		mui.openWindow("changename.html");
+	}
+	
+
+
+	
+	function back()
+		{
+			mui.openWindow("index.html");
+			
+		}
+	</script>
+</html>

@@ -39,7 +39,7 @@
 			and s.status like "%"#{orderStatus}"%"
 		</if>
 		<if test = 'orderStartTime != null and orderStartTime != "" and orderEndTime != null and orderEndTime != ""'>
-			and s.ordertime between #{listenStratTime} and #{listenEndTime}
+			and s.ordertime between #{orderStartTime} and #{orderEndTime}
 		</if>
 		order by lid, oid asc
 		limit #{pageStart}, #{pageNumber}

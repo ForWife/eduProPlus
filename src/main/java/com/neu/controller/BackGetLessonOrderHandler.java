@@ -53,9 +53,9 @@ public class BackGetLessonOrderHandler {
 		System.out.println(order_id);
 		String set_status = "";
 		if(s_status == 1) {
-			set_status = "???";
+			set_status = "已退款";
 		}else if(s_status == 2) {
-			set_status = "???";
+			set_status = "已核销";
 		}else {
 			System.out.println(s_status);
 		}
